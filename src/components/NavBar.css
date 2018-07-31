@@ -1,0 +1,31 @@
+.navWrapper{
+    width: 100vw;
+    height: 65px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.navMenu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.navMenu li{
+    padding: 15px;
+}
+.navMenu img{
+    padding: 20px;
+}
+.logo{
+    width: 35px;
+    font-size: 22px;
+}
+h3:active{
+    background: green;
+}
+

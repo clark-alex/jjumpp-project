@@ -1,0 +1,14 @@
+/* This will contain all of the css for all 
+components in the SideBar directory */
+
+
+/* ==== SideBarWrapper ==== */
+.SideBarWrapper{
+    position: relative;
+    /* color: var(--white); */
+    /* position: absolute; */
+    color: greenyellow;
+    width: 500px;
+    height: 90vh;
+    
+}

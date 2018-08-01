@@ -1,12 +1,23 @@
+/* styles for App and MainWrapper components */
 .App {
   text-align: center;
   --black: #2b2c3a;
   --white: #ffffff;
   --main: rgb(1, 118, 255);
-  --grey: #f9f9f9;
+  --grey: #f0f0f0;
   font-family: 'Nunito', sans-serif;
   background: var(--grey);
   height: 100vh;
   width: 100vw;
+  text-align: center;
+}
+.mainWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* align-items: center; */
+  padding: 20px;
+
+
 }
 

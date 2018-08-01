@@ -4,11 +4,9 @@ components in the SideBar directory */
 
 /* ==== SideBarWrapper ==== */
 .SideBarWrapper{
-    position: relative;
-    /* color: var(--white); */
-    /* position: absolute; */
-    color: greenyellow;
-    width: 500px;
+ 
+    background: var(--white);
+    width: 400px;
     height: 90vh;
     
 }

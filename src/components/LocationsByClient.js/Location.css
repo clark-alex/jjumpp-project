@@ -1,0 +1,7 @@
+/* all CSS for LocationByClient directory */
+
+.LocationsWrapper{
+    width: 71vw;
+    height: 80vh;
+    background: var(--white);
+}

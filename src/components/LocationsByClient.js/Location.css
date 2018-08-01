@@ -1,7 +1,50 @@
 /* all CSS for LocationByClient directory */
 
+
+/* ====== Location Wrapper ====== */
 .LocationsWrapper{
     width: 71vw;
     height: 80vh;
     background: var(--white);
 }
+.LocationsWrapper header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 22px
+}
+.LocationsWrapper h1{
+    font-weight: bold;
+}
+.LocationsWrapper i{
+    color: var(--darkGray);
+    font-size: 30px;
+    padding: 0 30px;
+}
+.LocationsWrapper section{
+    align-items: center;
+}
+.searchSubMenu{
+    padding: 0 40px;
+}
+.searchSubMenu i{
+    padding: 0
+}
+.locationSortBar{
+    justify-content: space-around
+}
+.locationSort{
+    align-items: center;
+}
+.sortArrows i{
+    position: relative;
+    top: 10px;
+}
+.sortArrows i:nth-child(2){
+    position: relative;
+    top: -10px;
+}
+
+/* ====== Individual Location ====== */

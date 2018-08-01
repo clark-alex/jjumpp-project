@@ -3,21 +3,59 @@
   text-align: center;
   --black: #2b2c3a;
   --white: #ffffff;
-  --main: rgb(1, 118, 255);
-  --grey: #f0f0f0;
+  --primary: rgb(1, 118, 255);
+  --gray: #f0f0f0;
+  --darkGray: #797979;
   font-family: 'Nunito', sans-serif;
-  background: var(--grey);
+  background: var(--gray);
   height: 100vh;
   width: 100vw;
   text-align: center;
 }
-.mainWrapper{
+/* saves you from having to type out flex all the time */
+.flexRow{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  /* align-items: center; */
-  padding: 20px;
-
-
 }
+.flexColumn{
+  display: flex;
+  flex-direction: column;
+}
+i{
+  cursor: pointer;
+  color: var(--darkGray);
+}
+
+
+.mainWrapper{
+  justify-content: space-around;
+  padding: 20px;
+}
+
+/* button styles */
+.primaryButton{
+  background: var(--primary);
+  color:var(--white);
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border: none;
+  width: 190px;
+  height: 40px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 6px #9b9b9f;
+  cursor: pointer;
+}
+
+.underline{
+  display:flex;
+  justify-content: center
+}
+.underline div{
+  width:98%;
+  height: 1px;
+  background: var(--darkGray)
+}
+
+
 

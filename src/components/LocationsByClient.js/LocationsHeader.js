@@ -1,27 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Location.css'
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer'
 
 
-class LocationsWrapper extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-
-        }
-    }
-    componentDidMount() {
-        
-    }
-
-
-
-    render() {
-        console.log(this.props)
+export default function LocationsHeader(props){
         return (
-            <div className='LocationsWrapper'>
+            <div>
                 <header>
                     <h1>LOCATIONS</h1>
                     <section className='flexRow'>
@@ -63,12 +48,4 @@ class LocationsWrapper extends Component {
                 <div className='underline'><div></div></div>
             </div>
         );
-    }
 }
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
-}
-
-export default connect(mapStateToProps, { getUser })(LocationsWrapper);

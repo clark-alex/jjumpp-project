@@ -1,7 +1,7 @@
 import axios from "axios";
 const initialState = {
   user: {},
-  locations: {}
+  locationInfo: {}
 }
 
 const _FULFILLED = '_FULFILLED'
@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { user: action.payload })
     case GET_LOCATION + _FULFILLED:
     console.log('action')
-      return Object.assign({}, state, { locations: action.payload })
+      return Object.assign({}, state, { locationInfo: action.payload })
 
     default:
       return state

@@ -5,6 +5,7 @@ const user = require('../models/User')
 const rating = require('../models/Ratings')
 const Schema = mongoose.Schema;
 
+
 const LocationSchema = new Schema(
     {
         name: { type:String, max:100 },
@@ -19,6 +20,7 @@ const LocationSchema = new Schema(
             city: { type: String, required: true, max: 100 },
             country: { type: String, required: true, max: 100 },
         },
+        notifications: {type:Number},
         last_managed: { type: Date, default: Date.now },
         Facebook: { type: Boolean },
         Google_Analytics: { type: Boolean },

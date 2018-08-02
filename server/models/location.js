@@ -1,18 +1,19 @@
 const mongoose = require('mongoose')
-const client = require('../models/Client.js')
+const client = require('../models/Client')
 // const Notification = require('../models/Notifications.js')
-const user = require('../models/User.js')
+const user = require('../models/User')
+const rating = require('../models/Ratings')
 const Schema = mongoose.Schema;
 
 const LocationSchema = new Schema(
     {
         name: { type:String, max:100 },
         // references the user model
-        users: { type: [Schema.Types.ObjectId], ref:user},
+        users: [{ type: Schema.Types.ObjectId, ref:user}],
         // references the client model
         client_id: { type: Schema.Types.ObjectId, ref:client},
         // references the rating model
-        rating: { type: Number },
+        ratings: [{ type: Schema.Types.ObjectId, ref:rating }],
         address: {
             street: { type: String, required: true, max: 100 },
             city: { type: String, required: true, max: 100 },
@@ -29,6 +30,6 @@ const LocationSchema = new Schema(
     }
 )
 
-module.exports = mongoose.model('Location', LocationSchema)
+module.exports = mongoose.model('location', LocationSchema)
 
 

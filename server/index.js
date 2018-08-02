@@ -26,10 +26,10 @@ db.once('open', function () {
 //simulating a get for a user
 app.get('/api/loggedIn', mainCtrl.getLoggedin)
 
-app.get('/api/notifications/:id', mainCtrl.getnotificationByClient)
+app.get('/api/notifications/:id', mainCtrl.getNotificationByClient)
 app.get('/api/ratings/:id', mainCtrl.getRatingsByClient)
 app.get('/api/users/:id', mainCtrl.getUsersByLocation)
-app.get('/api/Locations/:id',mainCtrl.getLocationByClient)
+app.get('/api/locations/:id',mainCtrl.getLocationByClient)
 
 
 // === Dummy Data ===

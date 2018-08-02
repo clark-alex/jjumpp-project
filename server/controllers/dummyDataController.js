@@ -8,10 +8,10 @@ module.exports = {
     addLocation: function (req, res) {
 
         var testLocation = new Location({
-            "name": "test2",
+            "name": "test3",
             "users": ["5b5f6a9c2955432cc62320c2", "5b5f92208f35d6019c15d32f"],
             "client_id": "5b5fb6d7aa10fd0dfc56dec0",
-            "rating": 2.3,
+            "ratings": ["5b5fcb227fa89413e854a8b5","5b5fcaf75534e313ba62f451"],
             "address": {
                 "street": "1234 s street ln",
                 "city": "city, UT 12345",

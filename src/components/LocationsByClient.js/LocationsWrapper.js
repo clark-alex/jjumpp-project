@@ -13,7 +13,7 @@ class LocationsWrapper extends Component {
         }
     }
     componentDidMount() {
-      
+        
     }
 
 

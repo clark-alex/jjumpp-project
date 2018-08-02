@@ -26,7 +26,7 @@ module.exports = {
     },
     // I chose to get notifications,ratings and users by client, so that I dont have to do an HTTP
     // request on each location component. 
-    getnotificationByClient: function (req, res) {
+    getNotificationByClient: function (req, res) {
         const { id } = req.params;
         notification.find({ client_id: id }, function (err, notification) {
             if (err) return console.error(err);
@@ -38,5 +38,15 @@ module.exports = {
             if (err) return console.error(err);
         }).then((rating) => res.status(200).send(rating))
     },
+    // this is a better way to do it but I neet to come back and make it work
+    // getLocationInfo: function () {
 
+    //     location.find({client_id:'5b5fb6d7aa10fd0dfc56dec0'})
+    //         .populate({path:'user', populate:{path:'user'}})
+    //         .exec(function (err, location) {
+    //             if (err) return handleError(err);
+    //             console.log('location',location);
+    //         })
+
+    // }
 }

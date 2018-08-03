@@ -11,6 +11,7 @@ const UserSchema = new Schema(
         first_name: {type: String, required:true, max:100},
         last_name: {type: String, required:true, max:100},
         birth_date: {type: Date},
+        img:{type:String},
         client_id: {type: Schema.Types.ObjectId, required:true, ref:client}
 
     }

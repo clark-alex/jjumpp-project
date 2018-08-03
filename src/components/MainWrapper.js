@@ -41,6 +41,7 @@ class MainWrapper extends Component {
                 <SideBarWrapper />
                 <div className='LocationsWrapper'>
                 <LocationsHeader/>
+                
                 {locations}
                 </div>
             </div>

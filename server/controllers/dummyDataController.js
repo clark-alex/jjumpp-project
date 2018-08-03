@@ -55,7 +55,6 @@ module.exports = {
             "name": 'Test Client 2',
             "locations": ['5b5fafba3dbbc80c04d46294'],
             "image": 'test.jpeg'
-            
         })
         testClient.save(function (err, testClient) {
             if (err) return console.error(err);

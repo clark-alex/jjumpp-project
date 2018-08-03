@@ -1,0 +1,17 @@
+.modelBackground{
+    width:100vw;
+    height:100vh;
+    position: absolute;
+    top:0;
+    background: #565555c9;
+    z-index: 100;
+}
+.addLocationModel{
+    height: 60vh;
+    width: 40vw;
+    background: var(--white);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}

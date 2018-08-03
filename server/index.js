@@ -30,6 +30,7 @@ app.get('/api/notifications/:id', mainCtrl.getNotificationByClient)
 app.get('/api/ratings/:id', mainCtrl.getRatingsByClient)
 app.get('/api/users/:id', mainCtrl.getUsersByLocation)
 app.get('/api/locations/:id',mainCtrl.getLocationByClient)
+app.post('/api/addLocation',mainCtrl.addLocation)
 
 
 // === Dummy Data ===

@@ -1,17 +1,18 @@
 import React from 'react';
-import './Location.css'
+import './Location.css';
 import { connect } from 'react-redux';
-import { getUser } from '../../ducks/reducer'
+import { getUser } from '../../ducks/reducer';
 
 
 export default function LocationsHeader(props) {
+    console.log('Header props', props)
     return (
         <div>
             <header>
                 <h1>LOCATIONS</h1>
                 <section className='flexRow'>
                     <i class="material-icons"> view_column</i>
-                    <button className='primaryButton'>+ ADD LOCATION</button>
+                    <button className='primaryButton' onClick={() => props.addLocationToggle()}>+ ADD LOCATION</button>
                 </section>
             </header>
 

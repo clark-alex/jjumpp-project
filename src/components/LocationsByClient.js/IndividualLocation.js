@@ -9,30 +9,30 @@ export default function individualLocation(props) {
             return id === e._id
         }))
     })
-    let userimg = userIdx.map(e => {
+    let userimg = userIdx.map((e,i) => {
         return (
-            <div>
+            <div key={i}>
                 {props.users[e].img}
             </div>
         )
     })
     return (
         <div className='flexColumn'>
-            <div className='flexRow locationSortBar'>
 
+            <div className='flexRow locationSortBar'>
                 <section className='flexRow location locationDisplay'>
                     <div className='imgContainer'>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/NSF_building-4.jpg" />
                     </div>
-                    <div>
-                        <div>{props.name}</div>
+                    <div className='nameAddress'>
+                        <h3>{props.name}</h3>
                         <div>{props.address.street}</div>
                         <div>{props.address.city}</div>
                     </div>
                 </section>
 
                 <section className='lastManagedDisplay'>
-                    <div>{moment(props.last_managed).format('l')}</div>
+                    <div className='nameAddress'>{moment(props.last_managed).format('l')}</div>
                 </section>
 
                 <section className='userDisplay'>

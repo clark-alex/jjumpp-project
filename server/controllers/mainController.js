@@ -38,6 +38,35 @@ module.exports = {
             if (err) return console.error(err);
         }).then((rating) => res.status(200).send(rating))
     },
+    addLocation: function (req, res) {
+        const {name, address, Facebook, Google_anaylytics, Google_My_Business, Infusion_Soft,Twitter,You_Tube, Linkedin} = req.body
+        const newLocationinfo =  {
+            name,
+            "address": {street:address.street,city:address.city,country:address.country},
+            Facebook,
+            Google_anaylytics,
+            Google_My_Business,
+            Infusion_Soft,
+            Twitter,
+            You_Tube,
+            Linkedin
+        }
+        console.log(newLocationinfo)
+        const newLocation = new location({
+            name,
+            "address": {street:address.street,city:address.city,country:address.country},
+            Facebook,
+            Google_anaylytics,
+            Google_My_Business,
+            Infusion_Soft,
+            Twitter,
+            You_Tube,
+            Linkedin
+        })
+        newLocation.save(function (err, body) {
+            if (err) return console.error(err);
+        })
+    },
     // this is a better way to do it but I neet to come back and make it work
     // getLocationInfo: function () {
 

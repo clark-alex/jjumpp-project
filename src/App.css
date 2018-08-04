@@ -21,10 +21,14 @@
 .flexColumn{
   display: flex;
   flex-direction: column;
+  transition: .2s
 }
 i{
   cursor: pointer;
   color: var(--darkGray);
+}
+i:hover{
+  color: var(--primary);
 }
 
 .mainWrapper{

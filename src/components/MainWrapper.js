@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideBarWrapper from './SideBar/SideBarWrapper';
+import SideBar from './SideBar/SideBar';
 import LocationsHeader from './LocationsByClient.js/LocationsHeader';
 import IndividualLocation from './LocationsByClient.js/IndividualLocation';
 import axios from 'axios'
@@ -11,13 +11,31 @@ class MainWrapper extends Component {
         super(props);
 
         this.state = {
-            filterMenuToggle: false,
+            filterMenuToggle: true,
             sortToggle: false,
             addLocation: false,
             locations: [],
             notifications: [],
             ratings: [],
-            users: []
+            users: [],
+            // ===filter state===
+            USA: false,
+            Uk: false,
+            Canada: false,
+            fiveStars: false,
+            fourStars: false,
+            threeStars: false,
+            twoStars: false,
+            oneStar: false,
+            facebook: false,
+            googleAnalytics: false,
+            googleMyBusiness: false,
+            infusionSoft: false,
+            twitter: false,
+            youTube: false,
+            linkedIn: false
+
+
         }
     }
     componentDidUpdate(prevProps) {
@@ -34,17 +52,16 @@ class MainWrapper extends Component {
         }
     }
     // ==== LocationsHeader ====
-    addLocationToggle = () => {
-        this.setState({ addLocation: !this.state.addLocation })
+    handleToggle = (toggleItem) => {
+        this.setState({ [toggleItem]: !this.state[toggleItem] })
     }
-    // ==== sorting methods ====
+    // ==== sorting method ====
     sortByLocationName = (title) => {
         // title will represent the title of what is to be sorted
         // this sort will sort by name. it will have to take into 
         // account first characters then numbers. 
         // if sort toggle is false then a->z else z->a
 
-        // if ( title === notifications)
         console.log(title)
         let arrToSort = []
         const locations = this.state.locations.slice()
@@ -57,13 +74,6 @@ class MainWrapper extends Component {
             this.state.sortToggle ? arrToSort.sort().reverse() : arrToSort.sort()
         console.log(arrToSort, locations[0].notifications)
         let sortedArray = []
-
-        // arrToSort.forEach((sortedItem,i) => {
-
-        //     // console.log(locations[locations[i][title.indexOf(sortedItem)]])
-        //     console.log('fix me!',locations[i])
-        //     // console.log(locations[i].indexOf(sortedItem))
-        // })
         arrToSort.forEach((sortedItem, i) => {
             locations.forEach((location, j) => {
                 if (sortedItem === location[title]) {
@@ -78,47 +88,63 @@ class MainWrapper extends Component {
             sortToggle: !this.state.sortToggle
         })
     }
-
-
-
-
-    render() {
-        console.log('main state', this.state)
-        let locations = this.state.locations ?
-            this.state.locations.map((e, i) => {
-                return (
-                    <div key={i}>
-                        <IndividualLocation
-                            name={e.name}
-                            address={e.address}
-                            ID={e._id}
-                            last_managed={e.last_managed}
-                            notifications={e.notifications}
-                            users={this.state.users}
-                            usersID={e.users}
-                        />
-                    </div>
-                )
-            })
-            : null
-        return (
-
-            <div className='mainWrapper flexRow'>
-                {this.state.addLocation ? <AddLocation /> : null}
-                {this.state.filterMenuToggle ? <SideBarWrapper /> : null}
-                <div className='LocationsWrapper'>
-                    <LocationsHeader
-                        locations={this.state.locations}
-                        sortByLocationName={this.sortByLocationName}
-                        addLocationToggle={this.addLocationToggle}
-                        addLocation={this.state.addLocation}
-                    />
-                    {locations}
-                </div>
-            </div>
-        )
+    // ==== filter menu ====
+    handleInput = (e) => {
+            this.setState({ [e.target.name]: e.target.checked })
+            this.filterLocations
     }
-}
+    filterLocations = () => {
+        const { USA, Uk, Canada, fiveStars, fourStars, threeStars, twoStars, oneStar, facebook, googleAnalytics, googleMyBusiness, infusionSoft, twitter, youTube, linkedIn } = this.state
+        const countryArr=[{USA}, {Uk}, {Canada}]
+        const ratingsArr=[{fiveStars}, {fourStars}, {threeStars}, {twoStars}, {oneStar}]
+        const integratedArr=[{facebook}, {googleAnalytics}, {googleMyBusiness}, {infusionSoft}, {twitter}, {youTube}, {linkedIn}]
+      console.log(countryArr.filter((e,i)=>{
+          return e[Object.keys(e)]===true
+        }))
+        console.log('!filter!')    
+    }
+
+        render() {
+            console.log('main state', this.state)
+            let locations = this.state.locations ?
+                this.state.locations.map((e, i) => {
+                    return (
+                        <div key={i}>
+                            <IndividualLocation
+                                name={e.name}
+                                address={e.address}
+                                ID={e._id}
+                                last_managed={e.last_managed}
+                                notifications={e.notifications}
+                                users={this.state.users}
+                                usersID={e.users}
+                            />
+                        </div>
+                    )
+                })
+                : null
+            return (
+
+                <div className='mainWrapper flexRow'>
+                    {this.state.addLocation ? <AddLocation /> : null}
+                    {this.state.filterMenuToggle ?
+                        <SideBar
+                            handleInput={this.handleInput}
+                            filterLocations={this.filterLocations}
+                        /> : null}
+                    <div className='LocationsWrapper'>
+                        <LocationsHeader
+                            locations={this.state.locations}
+                            sortByLocationName={this.sortByLocationName}
+                            handleToggle={this.handleToggle}
+                            addLocation={this.state.addLocation}
+                        />
+                        {locations}
+                    </div>
+                </div>
+            )
+        }
+    }
 function mapStateToProps(state) {
     return {
         locationInfo: state.locationInfo

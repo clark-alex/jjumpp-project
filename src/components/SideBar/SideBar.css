@@ -2,8 +2,8 @@
 components in the SideBar directory */
 
 
-/* ==== SideBarWrapper ==== */
-.SideBarWrapper{
+/* ==== SideBar ==== */
+.SideBar{
     background: var(--white);
     width: 400px;
     height: 90vh; 

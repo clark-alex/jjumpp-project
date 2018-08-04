@@ -12,11 +12,11 @@ export default function LocationsHeader(props) {
                 <h1>LOCATIONS</h1>
                 <section className='flexRow'>
                     <i class="material-icons"> view_column</i>
-                    <button className='primaryButton' onClick={() => props.addLocationToggle()}>+ ADD LOCATION</button>
+                    <button className='primaryButton' onClick={() => props.handleToggle('addLocation')}>+ ADD LOCATION</button>
                 </section>
             </header>
 
-            <section className='searchSubMenu flexRow'>
+            <section onClick={()=>props.handleToggle('filterMenuToggle')} className='searchSubMenu flexRow'>
                 <i class="material-icons">search</i>
                 <i class="material-icons">filter_list</i>
             </section>

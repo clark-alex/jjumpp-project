@@ -1,7 +1,7 @@
 import React from 'react';
 import './Location.css';
 import { connect } from 'react-redux';
-import { getUser } from '../../ducks/reducer';
+import { getUser, sortLocations} from '../../ducks/reducer';
 
 
 export default function LocationsHeader(props) {
@@ -24,7 +24,7 @@ export default function LocationsHeader(props) {
             <section className='locationSortBar flexRow '>
                 <div className='locationSort flexRow locationDisplay'>
                     <h2>Location</h2>
-                    <div className='sortArrows flexColumn'>
+                    <div onClick={()=>props.sortByLocationName('name')}className='sortArrows flexColumn'>
                         <i class="material-icons">arrow_drop_up</i>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>
@@ -32,7 +32,7 @@ export default function LocationsHeader(props) {
 
                 <div className='locationSort flexRow lastManagedDisplay' >
                     <h2>Last Managed</h2>
-                    <div className='flexColumn'>
+                    <div onClick={()=>props.sortByLocationName('last_managed')} className='flexColumn'>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ export default function LocationsHeader(props) {
 
                 <div className='locationSort flexRow notificationsDisplay'>
                     <h2>Notifications</h2>
-                    <div className='sortArrows flexColumn'>
+                    <div onClick={()=>props.sortByLocationName('notifications')} className='sortArrows flexColumn'>
                         <i class="material-icons">arrow_drop_up</i>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>

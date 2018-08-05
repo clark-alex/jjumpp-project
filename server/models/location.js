@@ -15,6 +15,7 @@ const LocationSchema = new Schema(
         client_id: { type: Schema.Types.ObjectId, ref:client},
         // references the rating model
         ratings: [{ type: Schema.Types.ObjectId, ref:rating }],
+        avg_rating: {type:Number},
         address: {
             street: { type: String, required: true, max: 100 },
             city: { type: String, required: true, max: 100 },

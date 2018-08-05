@@ -20,7 +20,6 @@ class AddLocation extends Component {
             linkedIn: false
         }
     }
-
     handleInput = (e) => {
         console.log(e)
         e.target.checked ?

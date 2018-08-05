@@ -5,7 +5,6 @@ import { getUser, sortLocations} from '../../ducks/reducer';
 
 
 export default function LocationsHeader(props) {
-    console.log('Header props', props)
     return (
         <div>
             <header>

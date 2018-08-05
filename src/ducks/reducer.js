@@ -34,12 +34,10 @@ export function getLocationInfo(client_id){
 }
 
 export default (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case GET_USER + _FULFILLED:
       return Object.assign({}, state, { user: action.payload })
     case GET_LOCATION + _FULFILLED:
-    console.log('action')
       return Object.assign({}, state, { locationInfo: action.payload })
 
     default:

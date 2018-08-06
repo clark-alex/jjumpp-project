@@ -83,7 +83,7 @@ class MainWrapper extends Component {
             })
         })
         this.setState({
-            locations: sortedArray,
+            locations: _.uniq(sortedArray,'name'),
             filterButtonToggle: !this.state.filterButtonToggle
         })
     }

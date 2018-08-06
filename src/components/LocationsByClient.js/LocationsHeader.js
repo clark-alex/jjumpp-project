@@ -6,7 +6,7 @@ import { getUser, sortLocations} from '../../ducks/reducer';
 
 export default function LocationsHeader(props) {
     return (
-        <div>
+        <div className='headerContainer'>
             <header>
                 <h1>LOCATIONS</h1>
                 <section className='flexRow headerButton'>
@@ -36,11 +36,11 @@ export default function LocationsHeader(props) {
                     </div>
                 </div>
 
-                <div className='locationSort flexRow userDisplay '>
+                <div className='locationSort flexRow userDisplay ' style={{marginRight:'70px'}}>
                     <h2>Users</h2>
                 </div>
 
-                <div className='locationSort flexRow notificationsDisplay'>
+                <div className='locationSort flexRow notificationsDisplay'style={{    position: 'relative', left: '-40px'}}>
                     <h2>Notifications</h2>
                     <div onClick={()=>props.sortByLocationName('notifications')} className='sortArrows flexColumn'>
                         <i class="material-icons">arrow_drop_up</i>

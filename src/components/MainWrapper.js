@@ -236,7 +236,7 @@ class MainWrapper extends Component {
                        
 
                     />
-                    <div style={{ height: '62vh', overflow: 'scroll' }}>
+                    <div style={{ height: '70vh', overflow: 'scroll' }}>
                         {locations}
                     </div>
                 </div>

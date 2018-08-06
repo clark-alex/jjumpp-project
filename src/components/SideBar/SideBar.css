@@ -4,16 +4,46 @@ components in the SideBar directory */
 
 /* ==== SideBar ==== */
 .SideBar{
+    display: flex;
     background: var(--white);
     width: 400px;
     height: 90vh; 
     justify-content: flex-start;
+    text-align: left;
+    font-size: 24px;
+}
+.innerBox{
+    padding:10px 45px;
+    overflow: scroll;
+}
+.innerBox h4 {
+    padding-top: 20px;
+}
+.innerBox h1 {
+    padding-top: 20px;
+}
+.innerBox h2 {
+    padding-top: 20px;
+}
+.innerBox h3 {
+    padding-top: 20px;
+}
+.innerBox input {
+    margin-top: 25px;
+}
+.innerBox section{
+    padding-bottom: 20px;
+    border-bottom: solid 1px var(--darkGray);
+}
+.innerBox button{
+    margin-top: 25px;
 }
 .disabled{
     color: lightgray
 }
 .active{
-    color: var(--darkGray)
+    color: var(--darkGray);
+    padding-top: 20px;
 }
 .active i{
     color: #ee0;
@@ -22,17 +52,22 @@ components in the SideBar directory */
     outline: none;
     border: none;
     background: none;
-    padding: 20px 20px 0 20px;
+    padding: 5px 20px 0 20px;
+    font-size:24px;
+    
 }
 .searchBar input::placeholder{
-    font-size:30px;
+    font-size:24px;
 }
-searchBar i {
+.searchBar i {
+    position: relative;
+    top:10px;
     padding: 0;
     margin: 0
 }
 .searchBar{
     border-bottom: solid 1px var(--darkGray);
-    margin: 20px 40px 0 40px;
+    padding-bottom: 5px;
+    margin: 45px 40px 0 45px;
     font-size: 30px;
 }

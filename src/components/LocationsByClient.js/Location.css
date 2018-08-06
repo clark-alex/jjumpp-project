@@ -60,7 +60,9 @@
     position: relative;
     top: -10px;
 }
-
+.headerButton *{
+    margin-right: 40px
+}
 
 
 /* ====== Individual Location ====== */

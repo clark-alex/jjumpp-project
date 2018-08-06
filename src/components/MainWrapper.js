@@ -216,7 +216,7 @@ class MainWrapper extends Component {
         return (
 
             <div className='mainWrapper flexRow'>
-                {this.state.addLocation ? <AddLocation /> : null}
+                {this.state.addLocation ? <AddLocation  handleToggle={this.handleToggle}/> : null}
                 {this.state.filterMenuToggle ?
                     <SideBar
                         state={{USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness,  InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar}}
@@ -225,13 +225,15 @@ class MainWrapper extends Component {
                         handleRatingsInput={this.handleRatingsInput}
                         filterButtonToggle={this.state.filterButtonToggle}
 
+
                     /> : null}
-                <div className='LocationsWrapper'>
+                <div className={'LocationsWrapper'} style={!this.state.filterMenuToggle? {width: '90vw'}:null}>
                     <LocationsHeader
                         locations={this.state.locations}
                         sortByLocationName={this.sortByLocationName}
                         handleToggle={this.handleToggle}
-                        addLocation={this.state.addLocation}
+
+                       
 
                     />
                     <div style={{ height: '62vh', overflow: 'scroll' }}>

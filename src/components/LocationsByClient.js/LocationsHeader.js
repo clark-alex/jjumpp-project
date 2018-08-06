@@ -9,7 +9,7 @@ export default function LocationsHeader(props) {
         <div>
             <header>
                 <h1>LOCATIONS</h1>
-                <section className='flexRow'>
+                <section className='flexRow headerButton'>
                     <i class="material-icons"> view_column</i>
                     <button className='primaryButton' onClick={() => props.handleToggle('addLocation')}>+ ADD LOCATION</button>
                 </section>

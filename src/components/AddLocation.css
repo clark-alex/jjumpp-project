@@ -5,13 +5,49 @@
     top:0;
     background: #565555c9;
     z-index: 100;
+    font-size: 24px;
 }
 .addLocationModel{
     height: 60vh;
-    width: 40vw;
+    width: 30vw;
     background: var(--white);
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%)
+    transform: translate(-50%,-50%);
+    text-align: left;
+    overflow:scroll;
 }
+.addLocationModel input{
+    outline: none;
+    border: none;
+    background: none;
+    padding: 5px 20px 0 20px;
+    font-size:24px;
+    border-bottom: solid 1px var(--darkGray);
+    width: 60%
+}
+.addLocationModel input::placeholder{
+    font-size:24px;
+    color:lightgray
+}
+.integratedWith div{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+}
+.innerAdd{
+    padding: 45px;
+}
+.innerAdd h2{
+    padding-top: 20px
+}
+.innerAdd h1{
+    color: var(--primary)
+}
+.closeModel{
+    position: relative;
+    top: -20px;
+    right: -100%;
+}
+

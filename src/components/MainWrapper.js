@@ -157,8 +157,9 @@ class MainWrapper extends Component {
             this.filterFunction()
     }
     filterFunction() {
-        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, avgRatings } = this.state
+        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, avgRatings,fiveStars,fourStars,threeStars,twoStars,oneStar } = this.state
         let countryArr = [{ USA }, { UK }, { Canada }].filter((e, i) => { return e[Object.keys(e)] === true })
+        let ratingsArr = [{ fiveStars }, { fourStars }, { threeStars },{ twoStars },{ oneStar }].filter((e, i) => { return e[Object.keys(e)] === true })
         let integratedArr = [{ Facebook }, { GoogleAnalytics }, { GoogleMyBusiness }, { InfusionSoft }, { Twitter }, { YouTube }, { LinkedIn }].filter((e, i) => { return e[Object.keys(e)] === true })
         let filteredArray = []
         if (countryArr.length > 0) {
@@ -189,7 +190,7 @@ class MainWrapper extends Component {
             })
         }
         console.log('filteredArray', filteredArray)
-        if (countryArr.length === 0 && integratedArr.length === 0) {
+        if (countryArr.length === 0 && integratedArr.length === 0 && ratingsArr.length === 0) {
             this.setState({ locations: this.props.locationInfo.locations })
         } else { this.setState({ locations: _.uniqBy(filteredArray, 'name'), filterButtonToggle: !this.state.filterButtonToggle }) }
     }

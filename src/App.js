@@ -14,7 +14,6 @@ class App extends Component {
     this.props.getUser()
   }
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <NavBar first_name={this.props.user.first_name} last_name={this.props.user.last_name} />

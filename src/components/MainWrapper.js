@@ -21,6 +21,7 @@ class MainWrapper extends Component {
             ratings: [],
             users: [],
             // ===filter state===
+            search: '',
             USA: false,
             UK: false,
             Canada: false,
@@ -43,7 +44,6 @@ class MainWrapper extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.client_id !== this.props.client_id) {
-            console.log(prevProps, this.props)
             this.props.getLocationInfo(this.props.client_id)
                 .then(() => this.setState({
                     locations: this.props.locationInfo.locations,
@@ -91,6 +91,9 @@ class MainWrapper extends Component {
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
     }
+    handleSearchInput = (e) => {
+        this.setState({ [e.target.name]: e.target.value, filterButtonToggle: false })
+    }
     handleRatingsInput = (e) => {
         if (e.target.name === 'fiveStars' && e.target.checked === true) {
             this.setState((prevState) => {
@@ -127,8 +130,7 @@ class MainWrapper extends Component {
                 return { avgRatings: newAvg }
             })
         }
-        console.log(e.target.name)
-        this.setState({ filterButtonToggle: false, [e.target.name]:!this.state[e.target.name] })
+        this.setState({ filterButtonToggle: false, [e.target.name]: !this.state[e.target.name] })
     }
     handleToggle = (toggleItem) => {
         this.setState({ [toggleItem]: !this.state[toggleItem] })
@@ -136,7 +138,6 @@ class MainWrapper extends Component {
 
 
     filterLocations = () => {
-        console.log(this.state.filterButtonToggle)
         this.state.filterButtonToggle ?
             this.setState({
                 avgRatings: [],
@@ -157,11 +158,20 @@ class MainWrapper extends Component {
             this.filterFunction()
     }
     filterFunction() {
-        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, avgRatings,fiveStars,fourStars,threeStars,twoStars,oneStar } = this.state
+        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, avgRatings, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
         let countryArr = [{ USA }, { UK }, { Canada }].filter((e, i) => { return e[Object.keys(e)] === true })
-        let ratingsArr = [{ fiveStars }, { fourStars }, { threeStars },{ twoStars },{ oneStar }].filter((e, i) => { return e[Object.keys(e)] === true })
+        let ratingsArr = [{ fiveStars }, { fourStars }, { threeStars }, { twoStars }, { oneStar }].filter((e, i) => { return e[Object.keys(e)] === true })
         let integratedArr = [{ Facebook }, { GoogleAnalytics }, { GoogleMyBusiness }, { InfusionSoft }, { Twitter }, { YouTube }, { LinkedIn }].filter((e, i) => { return e[Object.keys(e)] === true })
         let filteredArray = []
+        if (this.state.search) {
+            this.props.locationInfo.locations.forEach(location => {
+                if (location.name.toLowerCase() === this.state.search.toLowerCase()) {
+                    filteredArray.push(location)
+                }
+            })
+        }
+
+
         if (countryArr.length > 0) {
             this.props.locationInfo.locations.forEach(location => {
                 countryArr.forEach(e => {
@@ -189,52 +199,52 @@ class MainWrapper extends Component {
                 })
             })
         }
-        console.log('filteredArray', filteredArray)
-        if (countryArr.length === 0 && integratedArr.length === 0 && ratingsArr.length === 0) {
+        if (countryArr.length === 0 && integratedArr.length === 0 && ratingsArr.length === 0 && !this.state.search) {
             this.setState({ locations: this.props.locationInfo.locations })
         } else { this.setState({ locations: _.uniqBy(filteredArray, 'name'), filterButtonToggle: !this.state.filterButtonToggle }) }
     }
     render() {
-        console.log('main state', this.state)
-        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness,  InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar} = this.state
-            let locations = this.state.locations ?
-                this.state.locations.map((e, i) => {
-                    return (
-                        <div key={i}>
-                            <IndividualLocation
-                                name={e.name}
-                                address={e.address}
-                                ID={e._id}
-                                last_managed={e.last_managed}
-                                notifications={e.notifications}
-                                users={this.state.users}
-                                usersID={e.users}
-                            />
-                        </div>
-                    )
-                })
-                : null
+        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
+        let locations = this.state.locations ?
+            this.state.locations.map((e, i) => {
+                return (
+                    <div key={i}>
+                        <IndividualLocation
+                            name={e.name}
+                            address={e.address}
+                            ID={e._id}
+                            last_managed={e.last_managed}
+                            notifications={e.notifications}
+                            users={this.state.users}
+                            usersID={e.users}
+                        />
+                    </div>
+                )
+            })
+            : null
         return (
 
             <div className='mainWrapper flexRow'>
-                {this.state.addLocation ? <AddLocation  handleToggle={this.handleToggle}/> : null}
+                {this.state.addLocation ? <AddLocation handleToggle={this.handleToggle} /> : null}
                 {this.state.filterMenuToggle ?
                     <SideBar
-                        state={{USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness,  InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar}}
+                        state={{ USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar }}
                         filterLocations={this.filterLocations}
                         handleInput={this.handleInput}
                         handleRatingsInput={this.handleRatingsInput}
                         filterButtonToggle={this.state.filterButtonToggle}
+                        handleSearchInput={this.handleSearchInput}
+                        search={this.state.search}
 
 
                     /> : null}
-                <div className={'LocationsWrapper'} style={!this.state.filterMenuToggle? {width: '90vw'}:null}>
+                <div className={'LocationsWrapper'} style={!this.state.filterMenuToggle ? { width: '90vw' } : null}>
                     <LocationsHeader
                         locations={this.state.locations}
                         sortByLocationName={this.sortByLocationName}
                         handleToggle={this.handleToggle}
 
-                       
+
 
                     />
                     <div style={{ height: '70vh', overflow: 'scroll' }}>

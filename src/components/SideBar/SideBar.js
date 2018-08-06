@@ -2,12 +2,11 @@ import React from 'react';
 import './SideBar.css';
 
 function SideBar(props) {
-    console.log(props.state)
     return (
         <div className='SideBar flexColumn'>
                 <section className='searchBar flexRow' >
                     <i class="material-icons">search</i>
-                    <input placeholder='search' />
+                    <input placeholder='search' name='search' value={props.search} onChange={props.handleSearchInput}/>
                 </section>
             <div className='innerBox'>
                 <h1>Filter Locations by</h1>

@@ -12,7 +12,6 @@ export default function individualLocation(props) {
     let numOfUsers = userIdx.length
     let extraUsers
     if (userIdx.length > 6) {
-        console.log(userIdx)
         extraUsers = userIdx.splice(6).length
 
     }

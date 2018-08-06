@@ -59,16 +59,81 @@ i:hover{
   border-radius: 3px;
   cursor: pointer;
 }
+.circularButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  color:var(--darkGray);
+  border: solid 1px var(--darkGray);
+  border-radius: 50%;
+  margin: 0 3px;
+}
+.notificationIcon i{
+  color: var(--primary)
+}
+.notificationIcon p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -40px;
+  left: 90px;
+  color: var(--white);
+  background: red;
+  position: relative;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.notificationIcon div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -40px;
+  left: 54px;
+  color: var(--white);
+  background: red;
+  position: relative;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+/* input[type=checkbox]:checked {
+  background-color:#000;
+  border-left-color:#06F;
+  border-right-color:#06F;
+} */
+input[type=checkBox] {
+  padding-left:5px;
+  padding-right:5px;
+  border-radius:4px;
 
-.underline{
-  display:flex;
-  justify-content: center
+  -webkit-appearance:button;
+
+  border: double 2px var(--darkGray);
+
+  background-color:#fff;
+  color:#FFF;
+  white-space: nowrap;
+  overflow:hidden;
+
+  width:15px;
+  height:15px;
 }
-.underline div{
-  width:98%;
-  height: 1px;
-  background: var(--darkGray)
+
+input[type=checkBox]:checked {
+  background: var(--primary);
+  border-color: var(--primary)
 }
+/* input[type=checkBox] ::-ms-check {
+  background-image: url(https://openclipart.org/image/2400px/svg_to_png/295978/check-icn-black.png);
+  color: red;
+  background: black;
+  padding: 1em;
+} */
+
+
 
 
 

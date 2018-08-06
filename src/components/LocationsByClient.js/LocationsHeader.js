@@ -36,7 +36,7 @@ export default function LocationsHeader(props) {
                     </div>
                 </div>
 
-                <div className='locationSort flexRow userDisplay'>
+                <div className='locationSort flexRow userDisplay '>
                     <h2>Users</h2>
                 </div>
 
@@ -51,7 +51,6 @@ export default function LocationsHeader(props) {
                 <div className='managePlaceholder'></div>
 
             </section>
-            <div className='underline'><div></div></div>
         </div>
     );
 }

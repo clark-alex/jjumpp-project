@@ -9,12 +9,7 @@ import {getUser} from './ducks/reducer';
 import './App.css';
 import './reset.css'; 
 class App extends Component {
-  // componentDidMount(){
-  //   axios.post('/dummydata/addLocation')
-  //   axios.post('/dummydata/addRatings')
-  //   axios.post('/dummydata/addNotifications')
-  //   axios.post('/dummydata/addClient')
-  // }
+
   componentDidMount(){
     this.props.getUser()
   }

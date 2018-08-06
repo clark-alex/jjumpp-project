@@ -31,7 +31,12 @@ class MainWrapper extends Component {
             InfusionSoft: false,
             Twitter: false,
             YouTube: false,
-            LinkedIn: false
+            LinkedIn: false,
+            fiveStars: false,
+            fourStars: false,
+            threeStars: false,
+            twoStars: false,
+            oneStar: false
 
 
         }
@@ -122,7 +127,8 @@ class MainWrapper extends Component {
                 return { avgRatings: newAvg }
             })
         }
-        this.setState({ filterButtonToggle: false })
+        console.log(e.target.name)
+        this.setState({ filterButtonToggle: false, [e.target.name]:!this.state[e.target.name] })
     }
     handleToggle = (toggleItem) => {
         this.setState({ [toggleItem]: !this.state[toggleItem] })
@@ -189,31 +195,31 @@ class MainWrapper extends Component {
     }
     render() {
         console.log('main state', this.state)
-
-        let locations = this.state.locations ?
-            this.state.locations.map((e, i) => {
-                return (
-                    <div key={i}>
-                        <IndividualLocation
-                            name={e.name}
-                            address={e.address}
-                            ID={e._id}
-                            last_managed={e.last_managed}
-                            notifications={e.notifications}
-                            users={this.state.users}
-                            usersID={e.users}
-                        />
-                    </div>
-                )
-            })
-            : null
+        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness,  InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar} = this.state
+            let locations = this.state.locations ?
+                this.state.locations.map((e, i) => {
+                    return (
+                        <div key={i}>
+                            <IndividualLocation
+                                name={e.name}
+                                address={e.address}
+                                ID={e._id}
+                                last_managed={e.last_managed}
+                                notifications={e.notifications}
+                                users={this.state.users}
+                                usersID={e.users}
+                            />
+                        </div>
+                    )
+                })
+                : null
         return (
 
             <div className='mainWrapper flexRow'>
                 {this.state.addLocation ? <AddLocation /> : null}
                 {this.state.filterMenuToggle ?
                     <SideBar
-
+                        state={{USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness,  InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar}}
                         filterLocations={this.filterLocations}
                         handleInput={this.handleInput}
                         handleRatingsInput={this.handleRatingsInput}
@@ -228,7 +234,9 @@ class MainWrapper extends Component {
                         addLocation={this.state.addLocation}
 
                     />
-                    {locations}
+                    <div style={{ height: '62vh', overflow: 'scroll' }}>
+                        {locations}
+                    </div>
                 </div>
             </div>
         )

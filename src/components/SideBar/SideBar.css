@@ -7,4 +7,32 @@ components in the SideBar directory */
     background: var(--white);
     width: 400px;
     height: 90vh; 
+    justify-content: flex-start;
+}
+.disabled{
+    color: lightgray
+}
+.active{
+    color: var(--darkGray)
+}
+.active i{
+    color: #ee0;
+}
+.searchBar input{
+    outline: none;
+    border: none;
+    background: none;
+    padding: 20px 20px 0 20px;
+}
+.searchBar input::placeholder{
+    font-size:30px;
+}
+searchBar i {
+    padding: 0;
+    margin: 0
+}
+.searchBar{
+    border-bottom: solid 1px var(--darkGray);
+    margin: 20px 40px 0 40px;
+    font-size: 30px;
 }

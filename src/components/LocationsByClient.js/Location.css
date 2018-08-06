@@ -18,6 +18,12 @@
 .LocationsWrapper h1{
     font-weight: bold;
 }
+.LocationsWrapper h3{
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 20px;
+    letter-spacing: 1px;
+}
 .LocationsWrapper i{
     color: var(--darkGray);
     font-size: 30px;
@@ -34,7 +40,11 @@
 }
 .locationSortBar{
     justify-content: space-around;
-    padding: 0 15px;
+    margin: 0px 60px
+}
+.spacing{
+    justify-content: space-around;
+    margin: 0px 20px
 }
 .locationSort{
     align-items: center;
@@ -60,27 +70,39 @@
     border-radius: 50%;
 }
 .locationDisplay{
-    /* padding: 0 20px; */
      width: 25%
 
 }
+
 .lastManagedDisplay{
-    /* padding: 0 20px; */
     width: 15%;
 }
 .userDisplay{
-    /* padding: 0 20px; */
     width: 25%;
 }
 .notificationsDisplay{
-    /* padding: 0 20px; */
     width: 15%;
 }
 .managePlaceholder{
     width: 20%;
-    /* padding: 0 20px; */
 }
 .nameAddress{
-    padding: 10px 10px  ;
-
+    padding: 20px;
+}
+.nameAddress div{
+    color: (--darkGray);
+    padding: 5px 0px 0px 0px
+}
+.individualLocationWrapper{
+    margin : 5px
+}
+.userImages{
+    background:var(--gray);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    justify-content: center;
+}
+.bottomBorder{
+    border-bottom: solid 1px var(--darkGray);    
 }

@@ -3,6 +3,9 @@ const location = require('../models/Location.js')
 const notification = require('../models/Notifications.js')
 const rating = require('../models/Ratings.js')
 const user = require('../models/User.js')
+
+//simulating a logged in user
+const session = {user:'5b5f6a9c2955432cc62320c2', client_id:'5b69d34ae8e0e439826cd077' }
 module.exports = {
     getUsersByLocation: function (req, res) {
         const { id } = req.params;
@@ -12,14 +15,12 @@ module.exports = {
     },
     getLoggedin: function (req, res) {
         // just a simulation
-        const session_user = '5b5f6a9c2955432cc62320c2'
-        user.findById(session_user, function (err, user) {
+        user.findById(session.user, function (err, user) {
             if (err) return console.error(err);
         }).then((user) => res.status(200).send(user))
     },
     getLocationByClient: function (req, res) {
         const { id } = req.params;
-        // const id = '5b5fb6d7aa10fd0dfc56dec0'
         location.find({ client_id: id }, function (err, location) {
             if (err) return console.error(err);
         }).then((locations) => res.status(200).send(locations))
@@ -33,8 +34,7 @@ module.exports = {
         }).then((notification) => res.status(200).send(notification))
     },
     getRatingsByClient: function (req, res) {
-        const { id } = req.params;
-        rating.find({ client_id: id }, function (err, rating) {
+        rating.find({ client_id: session.client_id }, function (err, rating) {
             if (err) return console.error(err);
         }).then((rating) => res.status(200).send(rating))
     },
@@ -61,10 +61,14 @@ module.exports = {
             Infusion_Soft,
             Twitter,
             You_Tube,
-            Linkedin
+            Linkedin,
+            client_id:session.client_id,
+            notifications:0
+            
         })
-        newLocation.save(function (err, body) {
+        newLocation.save(function (err, newLocation) {
             if (err) return console.error(err);
+            res.status(200).send(newLocation)
         })
     },
     // this is a better way to do it but I neet to come back and make it work

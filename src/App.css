@@ -125,12 +125,26 @@ input[type=checkBox]:checked {
   background: var(--primary);
   border-color: var(--primary)
 }
-/* input[type=checkBox] ::-ms-check {
-  background-image: url(https://openclipart.org/image/2400px/svg_to_png/295978/check-icn-black.png);
-  color: red;
-  background: black;
-  padding: 1em;
-} */
+
+select{
+  color: (var(--darkGray));
+  outline: none;
+  border: none;
+  background: none;
+  border-radius: 0px;
+  margin: 5px 20px 0 13px;
+  font-size:22px;
+  /* border-bottom: solid 1px var(--darkGray); */
+  width: 60%
+}
+select:hover{
+  background: var(--gray);
+
+}
+.flexCenter{
+  justify-content: center;
+  align-items: center;
+}
 
 
 

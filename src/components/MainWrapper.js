@@ -16,6 +16,7 @@ class MainWrapper extends Component {
             filterMenuToggle: true,
             sortToggle: false,
             addLocation: false,
+            sorted: false,
             locations: [],
             notifications: [],
             ratings: [],
@@ -57,6 +58,15 @@ class MainWrapper extends Component {
         //     this.filterLocations()
         // }
     }
+    addLocationFn = (location) => {
+        let stateCopy = [...this.state.locations]
+        stateCopy.push(location)
+        console.log(stateCopy)
+        this.setState({
+            locations: stateCopy,
+            addLocation: false
+        })
+    }
 
     // ==== sorting method ====
     sortByLocationName = (title) => {
@@ -64,29 +74,80 @@ class MainWrapper extends Component {
         // this sort will sort by name. it will have to take into 
         // account first characters then numbers. 
         // if sort toggle is false then a->z else z->a
+        const locationsCopy = this.state.locations.slice()
 
-        let arrToSort = []
-        const locations = this.state.locations.slice()
-        locations.forEach(e => {
-            arrToSort.push(e[title])
+        title === 'notifications'
+        ?
+        locationsCopy.sort(function (a, b) {
+            return a.notifications - b.notifications;
+        })
+        :
+        title === 'last_managed'?
+        
+        locationsCopy.sort(function (a, b) {
+            console.log('gottem', +Date.parse(a.last_managed), +Date.parse(b.last_managed), a , b)
+            return +Date.parse(a.last_managed) - +Date.parse(b.last_managed);
+        })
+        :
+        // sort by name
+        locationsCopy.sort(function (a, b) {
+            var nameA = a.name.toUpperCase().replace(/\s/g,''); // ignore upper and lowercase
+            var nameB = b.name.toUpperCase().replace(/\s/g,''); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            // names must be equal
+            return 0;
         });
-        title === 'notifications' ?
-            this.state.sortToggle ? arrToSort.sort((a, b) => a - b).reverse() : arrToSort.sort((a, b) => a - b)
-            :
-            this.state.sortToggle ? arrToSort.sort().reverse() : arrToSort.sort()
-        let sortedArray = []
-        arrToSort.forEach((sortedItem, i) => {
-            locations.forEach((location, j) => {
-                if (sortedItem === location[title]) {
-                    sortedArray.push(location)
-                }
-            })
-        })
-        this.setState({
-            locations: _.uniq(sortedArray,'name'),
-            filterButtonToggle: !this.state.filterButtonToggle
-        })
+        console.log(locationsCopy)
+        this.state.sorted ?
+        this.setState({locations:locationsCopy.reverse(), sorted:false})
+        :
+        this.setState({locations:locationsCopy, sorted:true})
+
+
     }
+    // sortByLocationName = (title) => {
+    //     // title will represent the title of what is to be sorted
+    //     // this sort will sort by name. it will have to take into 
+    //     // account first characters then numbers. 
+    //     // if sort toggle is false then a->z else z->a
+
+
+    //     let arrToSort = []
+    //     const locations = this.state.locations.slice()
+    //     locations.forEach(e => {
+    //         arrToSort.push(e[title].toLowerCase())
+    //     });
+    //     title === 'notifications' ?
+    //     this.state.sorted ? arrToSort.sort((a, b) => a - b).reverse() : arrToSort.sort((a, b) => a - b)
+    //     :
+    //     this.state.sorted ? arrToSort.sort().reverse() : arrToSort.sort()
+    //     let sortedArray = []
+    //     arrToSort.forEach((sortedItem, i) => {
+    //         locations.forEach((location, j) => {
+    //             if (sortedItem === location[title]) {
+    //                 sortedArray.push(location)
+    //             }
+    //         })
+    //     })
+    //     this.state.sorted ?
+    //     this.setState({
+    //         locations: _.uniq(sortedArray, 'name'),
+    //         filterButtonToggle: !this.state.filterButtonToggle,
+    //         sorted: true
+    //     })
+    //     :
+    //     this.setState({
+    //         locations: this.state.locations.slice().reverse(),
+    //         sorted: false
+    //     })
+
+    // }
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
@@ -225,7 +286,7 @@ class MainWrapper extends Component {
         return (
 
             <div className='mainWrapper flexRow'>
-                {this.state.addLocation ? <AddLocation handleToggle={this.handleToggle} /> : null}
+                {this.state.addLocation ? <AddLocation handleToggle={this.handleToggle} addLocationFn={this.addLocationFn} /> : null}
                 {this.state.filterMenuToggle ?
                     <SideBar
                         state={{ USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar }}
@@ -235,6 +296,8 @@ class MainWrapper extends Component {
                         filterButtonToggle={this.state.filterButtonToggle}
                         handleSearchInput={this.handleSearchInput}
                         search={this.state.search}
+                        handleToggle={this.handleToggle}
+
 
 
                     /> : null}

@@ -8,7 +8,7 @@
     font-size: 24px;
 }
 .addLocationModel{
-    height: 60vh;
+    height: 72vh;
     width: 30vw;
     background: var(--white);
     position: relative;
@@ -16,7 +16,8 @@
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: left;
-    overflow:scroll;
+    overflow:hidden;
+    border-radius: 5px; 
 }
 .addLocationModel input{
     outline: none;
@@ -46,8 +47,11 @@
     color: var(--primary)
 }
 .closeModel{
+  justify-content: flex-end;
+}
+.closeModel i{
     position: relative;
-    top: -20px;
-    right: -100%;
+    top: -25px;
+    right: -25px;
 }
 

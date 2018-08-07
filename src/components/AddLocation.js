@@ -43,17 +43,18 @@ class AddLocation extends Component {
             "You_Tube": this.state.youTube,
             "Linkedin": this.state.linkedIn
         }
-        console.log(body)
-        axios.post('/api/addLocation', body).then((res) => console.log(res.data))
+        axios.post('/api/addLocation', body).then((res) => this.props.addLocationFn(res.data))
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.state)
         return (
             <div className='modelBackground flexColumn'>
                 <div className='addLocationModel '>
                     <div className='innerAdd'>
-                    <div  onClick={()=>this.props.handleToggle('addLocation')}className='closeModel'> X </div>
+                        <div className='flexRow closeModel'>
+                            <i onClick={() => this.props.handleToggle('addLocation')} class="material-icons">close</i>
+                        </div>
                         <h1>Add a Location</h1>
 
                         <div>
@@ -63,9 +64,14 @@ class AddLocation extends Component {
 
                         <h2>address</h2>
                         <div className='flexColumn'>
-                            <input name='street' placeholder='+street' onChange={this.handleInput} />
-                            <input name='city' placeholder='+city' onChange={this.handleInput} />
-                            <input name='country' placeholder='+country' onChange={this.handleInput} />
+                            <input name='street' placeholder='+Street' onChange={this.handleInput} />
+                            <input name='city' placeholder='+City' onChange={this.handleInput} />
+                            <select name='country' onChange={this.handleInput}>
+                                <option value='' disabled selected hidden>+Country</option>
+                                <option value='USA'>United States</option>
+                                <option value='UK'>United Kingdom</option>
+                                <option value='Canada'>Canada</option>
+                            </select>
                         </div>
 
                         <h2>Integrate with:</h2>
@@ -98,8 +104,9 @@ class AddLocation extends Component {
                                 <input name='linkedin' onChange={this.handleInput} type='checkbox' />
                                 <h4>Linkedin</h4>
                             </div>
-
-                            <button className='primaryButton' onClick={this.handleSubmit}>Add location</button>
+                            <div >
+                                <button className='primaryButton' onClick={this.handleSubmit}>Add location</button>
+                            </div>
                         </section>
                     </div>
                 </div>

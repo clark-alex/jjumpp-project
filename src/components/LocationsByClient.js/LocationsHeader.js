@@ -15,9 +15,9 @@ export default function LocationsHeader(props) {
                 </section>
             </header>
 
-            <section onClick={()=>props.handleToggle('filterMenuToggle')} className='searchSubMenu flexRow'>
-                <i class="material-icons">search</i>
-                <i class="material-icons">filter_list</i>
+            <section  className='searchSubMenu flexRow'>
+                <i onClick={()=>props.handleToggle('filterMenuToggle')}class="material-icons">search</i>
+                <i onClick={()=>props.handleToggle('filterMenuToggle')}class="material-icons">filter_list</i>
             </section>
 
             <section className='locationSortBar flexRow '>

@@ -3,11 +3,14 @@ import './SideBar.css';
 
 function SideBar(props) {
     return (
-        <div className='SideBar flexColumn'>
-                <section className='searchBar flexRow' >
-                    <i class="material-icons">search</i>
-                    <input placeholder='search' name='search' value={props.search} onChange={props.handleSearchInput}/>
-                </section>
+        <div className='SideBar flexColumn' >
+            <div className='flexRow closeSideBar'>
+                <i onClick={() => props.handleToggle('filterMenuToggle')} class="material-icons">close</i>
+            </div>
+            <section className='searchBar flexRow' >
+                <i class="material-icons">search</i>
+                <input placeholder='search' name='search' value={props.search} onChange={props.handleSearchInput} />
+            </section>
             <div className='innerBox'>
                 <h1>Filter Locations by</h1>
                 <section>
@@ -99,7 +102,7 @@ function SideBar(props) {
                         <h4 className={props.state.LinkedIn ? 'active' : 'disabled'}>Linkedin</h4>
                     </div>
                 </section>
-                    <button onClick={() => props.filterLocations()} className='secondaryButton'> {props.filterButtonToggle ? 'Cancel' : 'Filter'} </button>
+                <button onClick={() => props.filterLocations()} className='secondaryButton'> {props.filterButtonToggle ? 'Cancel' : 'Filter'} </button>
             </div>
         </div>
     );

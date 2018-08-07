@@ -71,3 +71,8 @@ components in the SideBar directory */
     margin: 45px 40px 0 45px;
     font-size: 30px;
 }
+.closeSideBar{
+    padding: 15px 15px 0 0;
+   justify-content: flex-end
+}
+

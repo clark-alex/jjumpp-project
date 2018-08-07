@@ -5,7 +5,7 @@ const rating = require('../models/Ratings.js')
 const user = require('../models/User.js')
 
 //simulating a logged in user
-const session = {user:'5b5f6a9c2955432cc62320c2', client_id:'5b69d34ae8e0e439826cd077' }
+const session = {user:'5b5f6a9c2955432cc62320c2', client_id:'5b5fb6d7aa10fd0dfc56dec0' }
 module.exports = {
     getUsersByLocation: function (req, res) {
         const { id } = req.params;

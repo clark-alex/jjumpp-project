@@ -112,6 +112,7 @@ class MainWrapper extends Component {
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
+        this.forceUpdate()
     }
     handleSearchInput = (e) => {
         this.setState({ [e.target.name]: e.target.value, filterButtonToggle: false })
@@ -179,52 +180,6 @@ class MainWrapper extends Component {
             :
             this.filterFunction()
     }
-    // filterFunction() {
-    //     const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, avgRatings, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
-    //     let countryArr = [{ USA }, { UK }, { Canada }].filter((e, i) => { return e[Object.keys(e)] === true })
-    //     let ratingsArr = [{ fiveStars }, { fourStars }, { threeStars }, { twoStars }, { oneStar }].filter((e, i) => { return e[Object.keys(e)] === true })
-    //     let integratedArr = [{ Facebook }, { GoogleAnalytics }, { GoogleMyBusiness }, { InfusionSoft }, { Twitter }, { YouTube }, { LinkedIn }].filter((e, i) => { return e[Object.keys(e)] === true })
-    //     let filteredArray = []
-    //     if (this.state.search) {
-    //         this.props.locationInfo.locations.forEach(location => {
-    //             if (location.name.toLowerCase() === this.state.search.toLowerCase()) {
-    //                 filteredArray.push(location)
-    //             }
-    //         })
-    //     }
-
-
-    //     if (countryArr.length > 0) {
-    //         this.props.locationInfo.locations.forEach(location => {
-    //             countryArr.forEach(e => {
-    //                 if (location.address.country === Object.keys(e)[0]) {
-    //                     filteredArray.push(location)
-    //                 }
-    //             })
-    //         })
-    //     }
-    //     if (avgRatings.length > 0) {
-    //         this.props.locationInfo.locations.forEach(location => {
-    //             avgRatings.forEach(e => {
-    //                 if (location.avg_rating === e) {
-    //                     filteredArray.push(location)
-    //                 }
-    //             })
-    //         })
-    //     }
-    //     if (integratedArr.length > 0) {
-    //         this.props.locationInfo.locations.forEach(location => {
-    //             integratedArr.forEach(integrated => {
-    //                 if (location[Object.keys(integrated)[0]]) {
-    //                     filteredArray.push(location)
-    //                 }
-    //             })
-    //         })
-    //     }
-    //     if (countryArr.length === 0 && integratedArr.length === 0 && ratingsArr.length === 0 && !this.state.search) {
-    //         this.setState({ locations: this.props.locationInfo.locations })
-    //     } else { this.setState({ locations: _.uniqBy(filteredArray, 'name'), filterButtonToggle: !this.state.filterButtonToggle }) }
-    // }
     itemsToFilter(){
         const {USA,UK,Canada,Facebook,GoogleAnalytics,GoogleMyBusiness,InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar} = this.state
         let filterItems = [{USA},{UK},{Canada},{Facebook},{GoogleAnalytics},{GoogleMyBusiness},{InfusionSoft},{Twitter},{YouTube},{LinkedIn},{fiveStars},{fourStars},{threeStars},{twoStars},{oneStar}].filter(e => {
@@ -232,6 +187,9 @@ class MainWrapper extends Component {
         })
         console.log(filterItems)
         return filterItems
+    }
+    addFilteredArray = (filteredArray) => {
+        this.setState({locations: filteredArray})
     }
     render() {
         const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
@@ -268,6 +226,7 @@ class MainWrapper extends Component {
                         handleToggle={this.handleToggle}
                         locations={this.props.locationInfo.locations}
                         filterItems={this.itemsToFilter()}
+                        addFilteredArray={this.addFilteredArray}
 
 
 

@@ -63,7 +63,8 @@ module.exports = {
             You_Tube,
             Linkedin,
             client_id:session.client_id,
-            notifications:0
+            notifications:0,
+            avg_rating:0,
             
         })
         newLocation.save(function (err, newLocation) {

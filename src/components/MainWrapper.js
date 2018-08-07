@@ -73,7 +73,6 @@ class MainWrapper extends Component {
         // title will represent the title of what is to be sorted
         // this sort will sort by name. it will have to take into 
         // account first characters then numbers. 
-        // if sort toggle is false then a->z else z->a
         const locationsCopy = this.state.locations.slice()
 
         title === 'notifications'
@@ -85,7 +84,6 @@ class MainWrapper extends Component {
         title === 'last_managed'?
         
         locationsCopy.sort(function (a, b) {
-            console.log('gottem', +Date.parse(a.last_managed), +Date.parse(b.last_managed), a , b)
             return +Date.parse(a.last_managed) - +Date.parse(b.last_managed);
         })
         :
@@ -103,7 +101,6 @@ class MainWrapper extends Component {
             // names must be equal
             return 0;
         });
-        console.log(locationsCopy)
         this.state.sorted ?
         this.setState({locations:locationsCopy.reverse(), sorted:false})
         :
@@ -111,43 +108,7 @@ class MainWrapper extends Component {
 
 
     }
-    // sortByLocationName = (title) => {
-    //     // title will represent the title of what is to be sorted
-    //     // this sort will sort by name. it will have to take into 
-    //     // account first characters then numbers. 
-    //     // if sort toggle is false then a->z else z->a
-
-
-    //     let arrToSort = []
-    //     const locations = this.state.locations.slice()
-    //     locations.forEach(e => {
-    //         arrToSort.push(e[title].toLowerCase())
-    //     });
-    //     title === 'notifications' ?
-    //     this.state.sorted ? arrToSort.sort((a, b) => a - b).reverse() : arrToSort.sort((a, b) => a - b)
-    //     :
-    //     this.state.sorted ? arrToSort.sort().reverse() : arrToSort.sort()
-    //     let sortedArray = []
-    //     arrToSort.forEach((sortedItem, i) => {
-    //         locations.forEach((location, j) => {
-    //             if (sortedItem === location[title]) {
-    //                 sortedArray.push(location)
-    //             }
-    //         })
-    //     })
-    //     this.state.sorted ?
-    //     this.setState({
-    //         locations: _.uniq(sortedArray, 'name'),
-    //         filterButtonToggle: !this.state.filterButtonToggle,
-    //         sorted: true
-    //     })
-    //     :
-    //     this.setState({
-    //         locations: this.state.locations.slice().reverse(),
-    //         sorted: false
-    //     })
-
-    // }
+    
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })

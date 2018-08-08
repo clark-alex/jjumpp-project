@@ -3,8 +3,7 @@ import './SideBar.css';
 
 class SideBar extends Component {
     componentDidUpdate(prevProps) {
-        if (JSON.stringify(prevProps.state) !== JSON.stringify(this.props.state)){
-
+        if (JSON.stringify(prevProps.state) !== JSON.stringify(this.props.state)) {
             let filteredByCountry = []
             const locationsCopy = this.props.locations
             this.props.filterItems.forEach(filterItem => {
@@ -46,14 +45,20 @@ class SideBar extends Component {
                 this.props.addFilteredArray(filteredByIntegration)
                 :
                 null
-    
         }
-
+        if (prevProps.search !== this.props.search) {
+            let searchLocations = []
+            this.props.locations.forEach(location => {
+                let regex = new RegExp(this.props.search.toUpperCase().replace(/\s/g, ''), 'gm')
+                let match = location.name.toUpperCase().replace(/\s/g, '').match(regex)
+                if (match) { searchLocations.push(location) }
+            })
+            this.props.search.length !== 0 ?
+                this.props.addFilteredArray(searchLocations)
+                :
+                null
+        }
     }
-
-
-
-
     render() {
         return (
             <div className='SideBar flexColumn' >

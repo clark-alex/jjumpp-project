@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 class MainWrapper extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             filterButtonToggle: false,
             filterMenuToggle: true,
@@ -26,7 +25,6 @@ class MainWrapper extends Component {
             USA: false,
             UK: false,
             Canada: false,
-            avgRatings: [],
             Facebook: false,
             GoogleAnalytics: false,
             GoogleMyBusiness: false,
@@ -39,8 +37,6 @@ class MainWrapper extends Component {
             threeStars: false,
             twoStars: false,
             oneStar: false
-
-
         }
     }
     componentDidUpdate(prevProps, prevState) {
@@ -54,9 +50,6 @@ class MainWrapper extends Component {
 
                 }))
         }
-        // if (prevState !== this.state) {
-        //     this.filterLocations()
-        // }
     }
     addLocationFn = (location) => {
         let stateCopy = [...this.state.locations]
@@ -76,39 +69,39 @@ class MainWrapper extends Component {
         const locationsCopy = this.state.locations.slice()
 
         title === 'notifications'
-        ?
-        locationsCopy.sort(function (a, b) {
-            return a.notifications - b.notifications;
-        })
-        :
-        title === 'last_managed'?
-        
-        locationsCopy.sort(function (a, b) {
-            return +Date.parse(a.last_managed) - +Date.parse(b.last_managed);
-        })
-        :
-        // sort by name
-        locationsCopy.sort(function (a, b) {
-            var nameA = a.name.toUpperCase().replace(/\s/g,''); // ignore upper and lowercase
-            var nameB = b.name.toUpperCase().replace(/\s/g,''); // ignore upper and lowercase
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
+            ?
+            locationsCopy.sort(function (a, b) {
+                return a.notifications - b.notifications;
+            })
+            :
+            title === 'last_managed' ?
 
-            // names must be equal
-            return 0;
-        });
+                locationsCopy.sort(function (a, b) {
+                    return +Date.parse(a.last_managed) - +Date.parse(b.last_managed);
+                })
+                :
+                // sort by name
+                locationsCopy.sort(function (a, b) {
+                    var nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase
+                    var nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+
+                    // names must be equal
+                    return 0;
+                });
         this.state.sorted ?
-        this.setState({locations:locationsCopy.reverse(), sorted:false})
-        :
-        this.setState({locations:locationsCopy, sorted:true})
+            this.setState({ locations: locationsCopy.reverse(), sorted: false })
+            :
+            this.setState({ locations: locationsCopy, sorted: true })
 
 
     }
-    
+
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
@@ -118,41 +111,7 @@ class MainWrapper extends Component {
         this.setState({ [e.target.name]: e.target.value, filterButtonToggle: false })
     }
     handleRatingsInput = (e) => {
-        if (e.target.name === 'fiveStars' && e.target.checked === true) {
-            this.setState((prevState) => {
-                let newAvg = prevState.avgRatings.slice()
-                newAvg.push(5)
-                return { avgRatings: newAvg }
-            })
-        }
-        if (e.target.name === 'fourStars' && e.target.checked === true) {
-            this.setState((prevState) => {
-                let newAvg = prevState.avgRatings.slice()
-                newAvg.push(4)
-                return { avgRatings: newAvg }
-            })
-        }
-        if (e.target.name === 'threeStars' && e.target.checked === true) {
-            this.setState((prevState) => {
-                let newAvg = prevState.avgRatings.slice()
-                newAvg.push(3)
-                return { avgRatings: newAvg }
-            })
-        }
-        if (e.target.name === 'twoStars' && e.target.checked === true) {
-            this.setState((prevState) => {
-                let newAvg = prevState.avgRatings.slice()
-                newAvg.push(2)
-                return { avgRatings: newAvg }
-            })
-        }
-        if (e.target.name === 'oneStar' && e.target.checked === true) {
-            this.setState((prevState) => {
-                let newAvg = prevState.avgRatings.slice()
-                newAvg.push(1)
-                return { avgRatings: newAvg }
-            })
-        }
+
         this.setState({ filterButtonToggle: false, [e.target.name]: !this.state[e.target.name] })
     }
     handleToggle = (toggleItem) => {
@@ -180,15 +139,15 @@ class MainWrapper extends Component {
             :
             this.filterFunction()
     }
-    itemsToFilter(){
-        const {USA,UK,Canada,Facebook,GoogleAnalytics,GoogleMyBusiness,InfusionSoft,Twitter,YouTube,LinkedIn,fiveStars,fourStars,threeStars,twoStars,oneStar} = this.state
-        let filterItems = [{USA},{UK},{Canada},{Facebook},{GoogleAnalytics},{GoogleMyBusiness},{InfusionSoft},{Twitter},{YouTube},{LinkedIn},{fiveStars},{fourStars},{threeStars},{twoStars},{oneStar}].filter(e => {
+    itemsToFilter() {
+        const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
+        let filterItems = [{ USA }, { UK }, { Canada }, { Facebook }, { GoogleAnalytics }, { GoogleMyBusiness }, { InfusionSoft }, { Twitter }, { YouTube }, { LinkedIn }, { fiveStars }, { fourStars }, { threeStars }, { twoStars }, { oneStar }].filter(e => {
             return e[Object.keys(e)] === true
         })
         return filterItems
     }
     addFilteredArray = (filteredArray) => {
-        this.setState({locations: filteredArray})
+        this.setState({ locations: filteredArray })
     }
     render() {
         const { USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar } = this.state
@@ -213,7 +172,7 @@ class MainWrapper extends Component {
 
             <div className='mainWrapper flexRow'>
                 {this.state.addLocation ? <AddLocation handleToggle={this.handleToggle} addLocationFn={this.addLocationFn} /> : null}
-                {this.state.filterMenuToggle &&this.props.locationInfo.locations ?
+                {this.state.filterMenuToggle && this.props.locationInfo.locations ?
                     <SideBar
                         state={{ USA, UK, Canada, Facebook, GoogleAnalytics, GoogleMyBusiness, InfusionSoft, Twitter, YouTube, LinkedIn, fiveStars, fourStars, threeStars, twoStars, oneStar }}
                         filterLocations={this.filterLocations}

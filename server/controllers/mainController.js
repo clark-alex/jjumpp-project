@@ -72,15 +72,4 @@ module.exports = {
             res.status(200).send(newLocation)
         })
     },
-    // this is a better way to do it but I neet to come back and make it work
-    // getLocationInfo: function () {
-
-    //     location.find({client_id:'5b5fb6d7aa10fd0dfc56dec0'})
-    //         .populate({path:'user', populate:{path:'user'}})
-    //         .exec(function (err, location) {
-    //             if (err) return handleError(err);
-    //             console.log('location',location);
-    //         })
-
-    // }
 }

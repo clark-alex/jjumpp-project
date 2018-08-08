@@ -185,7 +185,6 @@ class MainWrapper extends Component {
         let filterItems = [{USA},{UK},{Canada},{Facebook},{GoogleAnalytics},{GoogleMyBusiness},{InfusionSoft},{Twitter},{YouTube},{LinkedIn},{fiveStars},{fourStars},{threeStars},{twoStars},{oneStar}].filter(e => {
             return e[Object.keys(e)] === true
         })
-        console.log(filterItems)
         return filterItems
     }
     addFilteredArray = (filteredArray) => {

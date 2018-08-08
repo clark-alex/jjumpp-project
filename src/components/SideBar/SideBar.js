@@ -10,7 +10,6 @@ class SideBar extends Component {
             this.props.filterItems.forEach(filterItem => {
                 locationsCopy.forEach(location => {
                     location.checkAll = 0
-                    console.log(Object.keys(filterItem))
                     if (location.address.country === Object.keys(filterItem)[0]) {
                         filteredByCountry.push(location)
                     }
@@ -28,7 +27,6 @@ class SideBar extends Component {
                         case 'twoStars': ratingNumber = 2; break;
                         case 'oneStar': ratingNumber = 1; break;
                     }
-                    console.log(ratingNumber)
                     if (ratingNumber === location.avg_rating) {
                         filteredByRating.push(location)
                     }
@@ -43,16 +41,12 @@ class SideBar extends Component {
                     }
                 })
             })
-            console.log(filteredByIntegration.length)
             filteredByIntegration = filteredByIntegration.length === 0 ? filteredByRating : filteredByIntegration
             this.props.filterItems.length !== 0 ?
                 this.props.addFilteredArray(filteredByIntegration)
                 :
                 null
     
-            console.log(filteredByCountry)
-            console.log(filteredByRating)
-            console.log(filteredByIntegration)
         }
 
     }

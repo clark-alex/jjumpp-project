@@ -53,10 +53,12 @@ class SideBar extends Component {
                 let match = location.name.toUpperCase().replace(/\s/g, '').match(regex)
                 if (match) { searchLocations.push(location) }
             })
-            this.props.search.length !== 0 ?
+            if (this.props.search === ''){ searchLocations = this.props.locations}
+            console.log(searchLocations, this.props.search)
+            // this.props.search.length !== 0 ?
                 this.props.addFilteredArray(searchLocations)
-                :
-                null
+                // :
+                // null
         }
     }
     render() {

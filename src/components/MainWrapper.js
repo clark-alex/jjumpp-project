@@ -82,8 +82,8 @@ class MainWrapper extends Component {
                 :
                 // sort by name
                 locationsCopy.sort(function (a, b) {
-                    var nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase
-                    var nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase
+                    var nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
+                    var nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
                     if (nameA < nameB) {
                         return -1;
                     }

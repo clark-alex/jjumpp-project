@@ -21,7 +21,7 @@ export default function individualLocation(props) {
                     props.users[e].img.length > 2 ?
                         <img className='userImages flexColumn' src={props.users[e].img} />
                         :
-                        <div className='userImages flexColumn' style={{fontSize:'10px'}}>{props.users[e].img}</div>
+                        <div className='userImages flexColumn' style={{ fontSize: '10px' }}>{props.users[e].img}</div>
                 }
             </div>
         )
@@ -30,7 +30,7 @@ export default function individualLocation(props) {
         <div className='flexColumn individualLocationWrapper'>
 
             <div className='bottomBorder' >
-                <div style={{ padding: '10px 16px' }} className='flexRow '>
+                <div style={{ margin: '20px 60px 30px' }} className='flexRow '>
                     <section className='flexRow location locationDisplay'>
                         <div className='imgContainer'>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/NSF_building-4.jpg" />
@@ -47,20 +47,20 @@ export default function individualLocation(props) {
                     </section>
 
                     <section className='userDisplay flexColumn'>
-                        <div className='flexRow nameAddress'>
+                        <div className='flexRow nameAddress' >
                             <h2>{numOfUsers} Users</h2>
                             <button className='circularButton'>+</button>
                         </div>
                         <div className='flexRow' >
                             {userimg}
-                            {extraUsers > 0  ?     <div style={{ borderRadius: '50%' }} className='userImages flexColumn'> +{extraUsers}</div> : null}
+                            {extraUsers > 0 ? <div style={{ borderRadius: '50%' }} className='userImages flexColumn'> +{extraUsers}</div> : null}
                         </div>
                     </section>
 
-                    <section className={`nameAddress notificationsDisplay  ${props.notifications !== 0 ? 'notificationIcon' : ''}`}>
+                    <section className={`nameAddress notificationsDisplay  ${props.notifications !== 0 ? 'notificationIcon' : 'disabled'}`}>
                         <i class="material-icons">notifications</i>
-                        {props.notifications > 0 && props.notifications < 10 ? <p>{props.notifications}</p> : null}
-                        {props.notifications > 10 ? <div>{props.notifications}</div> : null}
+                        {props.notifications >= 0 && props.notifications < 10 ? <p>{props.notifications}</p> : null}
+                        {props.notifications >= 10 ? <p style={{width:'20px'}}>{props.notifications}</p> : null}
                     </section>
                     <div className=' nameAddress managePlaceholder '>
                         <button className='secondaryButton'>Manage</button>

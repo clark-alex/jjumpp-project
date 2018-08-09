@@ -11,7 +11,7 @@ class MainWrapper extends Component {
         super(props);
         this.state = {
             filterButtonToggle: false,
-            filterMenuToggle: true,
+            filterMenuToggle: false,
             sortToggle: false,
             addLocation: false,
             sorted: false,

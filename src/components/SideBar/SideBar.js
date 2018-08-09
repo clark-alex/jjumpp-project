@@ -41,10 +41,12 @@ class SideBar extends Component {
                 })
             })
             filteredByIntegration = filteredByIntegration.length === 0 ? filteredByRating : filteredByIntegration
-            this.props.filterItems.length !== 0 ?
-                this.props.addFilteredArray(filteredByIntegration)
+            console.log(this.props.filterItems.length)
+            this.props.filterItems.length === 0 ?
+                this.props.addFilteredArray(this.props.locations)
                 :
-                null
+                this.props.addFilteredArray(filteredByIntegration)
+
         }
         if (prevProps.search !== this.props.search) {
             let searchLocations = []
@@ -53,10 +55,10 @@ class SideBar extends Component {
                 let match = location.name.toUpperCase().replace(/\s/g, '').match(regex)
                 if (match) { searchLocations.push(location) }
             })
-            if (this.props.search === ''){ searchLocations = this.props.locations}
+            if (this.props.search === '') { searchLocations = this.props.locations }
             console.log(searchLocations, this.props.search)
-                this.props.addFilteredArray(searchLocations)
-          
+            this.props.addFilteredArray(searchLocations)
+
         }
     }
     render() {

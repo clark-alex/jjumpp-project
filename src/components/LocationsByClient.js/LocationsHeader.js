@@ -1,7 +1,7 @@
 import React from 'react';
 import './Location.css';
 import { connect } from 'react-redux';
-import { getUser, sortLocations} from '../../ducks/reducer';
+import { getUser, sortLocations } from '../../ducks/reducer';
 
 
 export default function LocationsHeader(props) {
@@ -15,40 +15,39 @@ export default function LocationsHeader(props) {
                 </section>
             </header>
 
-            <section  className='searchSubMenu flexRow'>
-                <i onClick={()=>props.handleToggle('filterMenuToggle')}class="material-icons">search</i>
-                <i onClick={()=>props.handleToggle('filterMenuToggle')}class="material-icons">filter_list</i>
+            <section className='searchSubMenu flexRow'>
+                <i onClick={() => props.handleToggle('filterMenuToggle')} class="material-icons">search</i>
+                <i onClick={() => props.handleToggle('filterMenuToggle')} class="material-icons">filter_list</i>
             </section>
 
             <section className='locationSortBar flexRow '>
-                <div className='locationSort flexRow locationDisplay'>
+                <div className='locationSort flexRow ' style={{ width: '26%' }}>
                     <h2>Location</h2>
-                    <div onClick={()=>props.sortByLocationName('name')}className='sortArrows flexColumn'>
+                    <div onClick={() => props.sortByLocationName('name')} className='sortArrows flexColumn'>
                         <i class="material-icons">arrow_drop_up</i>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>
                 </div>
 
-                <div className='locationSort flexRow lastManagedDisplay' >
+                <div className='locationSort flexRow' style={{width: '26%' ,justifyContent: 'flex-start'}}>
                     <h2>Last Managed</h2>
-                    <div onClick={()=>props.sortByLocationName('last_managed')} className='flexColumn'>
+                    <div onClick={() => props.sortByLocationName('last_managed')} className='flexColumn'>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>
                 </div>
 
-                <div className='locationSort flexRow userDisplay ' style={{marginRight:'70px'}}>
+                <div className='locationSort flexRow  'style={{width: '15%' ,justifyContent: 'flex-start'}}>
                     <h2>Users</h2>
                 </div>
 
-                <div className='locationSort flexRow notificationsDisplay'style={{    position: 'relative', left: '-40px'}}>
+                <div className='locationSort flexRow notificationsDisplay'>
                     <h2>Notifications</h2>
-                    <div onClick={()=>props.sortByLocationName('notifications')} className='sortArrows flexColumn'>
+                    <div onClick={() => props.sortByLocationName('notifications')} className='sortArrows flexColumn'>
                         <i class="material-icons">arrow_drop_up</i>
                         <i class="material-icons">arrow_drop_down</i>
                     </div>
                 </div>
 
-                <div className='managePlaceholder'></div>
 
             </section>
         </div>

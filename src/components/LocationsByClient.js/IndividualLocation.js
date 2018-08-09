@@ -13,7 +13,6 @@ export default function individualLocation(props) {
     let extraUsers
     if (userIdx.length > 6) {
         extraUsers = userIdx.splice(6).length
-
     }
     let userimg = userIdx.map((e, i) => {
         return (
@@ -22,9 +21,8 @@ export default function individualLocation(props) {
                     props.users[e].img.length > 2 ?
                         <img className='userImages flexColumn' src={props.users[e].img} />
                         :
-                        <div className='userImages flexColumn'>{props.users[e].img}</div>
+                        <div className='userImages flexColumn' style={{fontSize:'10px'}}>{props.users[e].img}</div>
                 }
-
             </div>
         )
     })
@@ -32,7 +30,7 @@ export default function individualLocation(props) {
         <div className='flexColumn individualLocationWrapper'>
 
             <div className='bottomBorder' >
-                <div style={{ padding: '40px' }} className='flexRow spacing'>
+                <div style={{ padding: '10px 16px' }} className='flexRow '>
                     <section className='flexRow location locationDisplay'>
                         <div className='imgContainer'>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/NSF_building-4.jpg" />

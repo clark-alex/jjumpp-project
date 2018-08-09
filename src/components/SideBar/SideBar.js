@@ -55,10 +55,8 @@ class SideBar extends Component {
             })
             if (this.props.search === ''){ searchLocations = this.props.locations}
             console.log(searchLocations, this.props.search)
-            // this.props.search.length !== 0 ?
                 this.props.addFilteredArray(searchLocations)
-                // :
-                // null
+          
         }
     }
     render() {
@@ -75,22 +73,22 @@ class SideBar extends Component {
                     <h1>Filter Locations by</h1>
                     <section>
                         <h2>Country</h2>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='USA' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.USA ? 'active' : 'disabled'}>United States</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='UK' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.UK ? 'active' : 'disabled'}>United Kingdom</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='Canada' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.Canada ? 'active' : 'disabled'}>Canada</h4>
                         </div>
                     </section>
                     <section>
                         <h2>Average Rating</h2>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='fiveStars' onChange={this.props.handleRatingsInput} type='checkbox' />
                             <h4 className={this.props.state.fiveStars ? 'active' : 'disabled'}>
                                 <i class="material-icons">star</i>
@@ -100,7 +98,7 @@ class SideBar extends Component {
                                 <i class="material-icons">star</i>
                             </h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='fourStars' onChange={this.props.handleRatingsInput} type='checkbox' />
                             <h4 className={this.props.state.fourStars ? 'active' : 'disabled'}>
                                 <i class="material-icons">star</i>
@@ -109,7 +107,7 @@ class SideBar extends Component {
                                 <i class="material-icons">star</i>
                             </h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='threeStars' onChange={this.props.handleRatingsInput} type='checkbox' />
                             <h4 className={this.props.state.threeStars ? 'active' : 'disabled'}>
                                 <i class="material-icons">star</i>
@@ -117,14 +115,14 @@ class SideBar extends Component {
                                 <i class="material-icons">star</i>
                             </h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='twoStars' onChange={this.props.handleRatingsInput} type='checkbox' />
                             <h4 className={this.props.state.twoStars ? 'active' : 'disabled'}>
                                 <i class="material-icons">star</i>
                                 <i class="material-icons">star</i>
                             </h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='oneStar' onChange={this.props.handleRatingsInput} type='checkbox' />
                             <h4 className={this.props.state.oneStar ? 'active' : 'disabled'}>
                                 <i class="material-icons">star</i>
@@ -133,36 +131,35 @@ class SideBar extends Component {
                     </section>
                     <section>
                         <h3>Integrated With</h3>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='Facebook' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.Facebook ? 'active' : 'disabled'}>Facebook</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='GoogleAnalytics' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.GoogleAnalytics ? 'active' : 'disabled'}>Google Analytics</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='GoogleMyBusiness' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.GoogleMyBusiness ? 'active' : 'disabled'}>Google My Business</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='InfusionSoft' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.InfusionSoft ? 'active' : 'disabled'}>InfusionSoft</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='Twitter' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.Twitter ? 'active' : 'disabled'}>Twitter</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='YouTube' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.YouTube ? 'active' : 'disabled'}>YouTube</h4>
                         </div>
-                        <div className='flexRow'>
+                        <div className='flexRow align'>
                             <input name='LinkedIn' onChange={this.props.handleInput} type='checkbox' />
                             <h4 className={this.props.state.LinkedIn ? 'active' : 'disabled'}>Linkedin</h4>
                         </div>
                     </section>
-                    <button onClick={() => this.props.filterLocations()} className='secondaryButton'> {this.props.filterButtonToggle ? 'Cancel' : 'Filter'} </button>
                 </div>
             </div>
         )

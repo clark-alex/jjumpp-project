@@ -3,7 +3,6 @@ import SideBar from './SideBar/SideBar';
 import LocationsHeader from './LocationsByClient.js/LocationsHeader';
 import IndividualLocation from './LocationsByClient.js/IndividualLocation';
 import axios from 'axios'
-import _ from 'lodash'
 import AddLocation from './AddLocation';
 import { getLocationInfo } from '../ducks/reducer';
 import { connect } from 'react-redux';
@@ -60,14 +59,12 @@ class MainWrapper extends Component {
             addLocation: false
         })
     }
-
     // ==== sorting method ====
     sortByLocationName = (title) => {
         // title will represent the title of what is to be sorted
         // this sort will sort by name. it will have to take into 
         // account first characters then numbers. 
         const locationsCopy = this.state.locations.slice()
-
         title === 'notifications'
             ?
             locationsCopy.sort(function (a, b) {
@@ -90,7 +87,6 @@ class MainWrapper extends Component {
                     if (nameA > nameB) {
                         return 1;
                     }
-
                     // names must be equal
                     return 0;
                 });
@@ -98,10 +94,7 @@ class MainWrapper extends Component {
             this.setState({ locations: locationsCopy.reverse(), sorted: false })
             :
             this.setState({ locations: locationsCopy, sorted: true })
-
-
     }
-
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
@@ -117,8 +110,6 @@ class MainWrapper extends Component {
     handleToggle = (toggleItem) => {
         this.setState({ [toggleItem]: !this.state[toggleItem] })
     }
-
-
     filterLocations = () => {
         this.state.filterButtonToggle ?
             this.setState({
@@ -185,18 +176,12 @@ class MainWrapper extends Component {
                         locations={this.props.locationInfo.locations}
                         filterItems={this.itemsToFilter()}
                         addFilteredArray={this.addFilteredArray}
-
-
-
                     /> : null}
                 <div className={'LocationsWrapper'} style={!this.state.filterMenuToggle ? { width: '90vw' } : null}>
                     <LocationsHeader
                         locations={this.state.locations}
                         sortByLocationName={this.sortByLocationName}
                         handleToggle={this.handleToggle}
-
-
-
                     />
                     <div style={{ height: '70vh', overflow: 'scroll' }}>
                         {locations}

@@ -20,7 +20,6 @@
 .flexColumn{
   display: flex;
   flex-direction: column;
-  transition: .2s
 }
 i{
   cursor: pointer;
@@ -32,18 +31,18 @@ i:hover{
 
 .mainWrapper{
   justify-content: space-around;
-  padding: 20px;
+  padding: 15px 0px;
 }
 
 /* button styles */
 .primaryButton{
   background: var(--primary);
   color:var(--white);
-  font-size: 18px;
+  font-size: 12px;
   outline: none;
   border: none;
-  width: 190px;
-  height: 40px;
+  width: 150px;
+  height: 30px;
   border-radius: 3px;
   box-shadow: 1px 1px 6px #9b9b9f;
   cursor: pointer;
@@ -104,6 +103,7 @@ i:hover{
   border-right-color:#06F;
 } */
 input[type=checkBox] {
+  margin-top: 22px;
   padding-left:5px;
   padding-right:5px;
   border-radius:4px;

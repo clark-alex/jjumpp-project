@@ -50,7 +50,7 @@ components in the SideBar directory */
     padding-top: 20px;
 }
 .active i{
-    color: #ee0;
+    color: #fff922f2;
 }
 .searchBar{
     border-bottom: solid 1px var(--darkGray);

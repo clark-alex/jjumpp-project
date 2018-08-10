@@ -46,6 +46,10 @@ i:hover{
   border-radius: 3px;
   box-shadow: 1px 1px 6px #9b9b9f;
   cursor: pointer;
+  transition: .2s;
+}
+.primaryButton:hover{
+  background: rgb(41, 120, 212)
 }
 .secondaryButton{
   color:var(--primary);
@@ -61,6 +65,8 @@ i:hover{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: -4px;
   height: 20px;
   width: 20px;
   color:var(--darkGray);
@@ -142,10 +148,12 @@ select{
   margin: 5px 20px 0 13px;
   font-size:16px;
   /* border-bottom: solid 1px var(--darkGray); */
-  width: 60%
+  width: 60%;
+  cursor: pointer;
 }
 select:hover{
-  background: var(--gray);
+  background: var(--white);
+  color: var(--primary);
 
 }
 .flexCenter{

@@ -21,7 +21,6 @@ class AddLocation extends Component {
         }
     }
     handleInput = (e) => {
-        console.log(e)
         e.target.checked ?
             this.setState({ [e.target.name]: e.target.checked })
             :
@@ -49,7 +48,7 @@ class AddLocation extends Component {
     render() {
         console.log(this.state)
         return (
-            <div className='modelBackground flexColumn'>
+            <div  className='modelBackground flexColumn'>
                 <div className='addLocationModel '>
                     <div className='innerAdd'>
                         <div className='flexRow closeModel'>
@@ -67,7 +66,7 @@ class AddLocation extends Component {
                             <input name='street' placeholder='+Street' onChange={this.handleInput} />
                             <input name='city' placeholder='+City' onChange={this.handleInput} />
                             <select name='country' onChange={this.handleInput}>
-                                <option value='' disabled selected hidden>+Country</option>
+                                <option value='' disabled selected>+Country</option>
                                 <option value='USA'>United States</option>
                                 <option value='UK'>United Kingdom</option>
                                 <option value='Canada'>Canada</option>

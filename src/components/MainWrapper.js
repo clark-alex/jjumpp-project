@@ -4,7 +4,7 @@ import LocationsHeader from './LocationsByClient.js/LocationsHeader';
 import IndividualLocation from './LocationsByClient.js/IndividualLocation';
 import axios from 'axios'
 import AddLocation from './AddLocation';
-import { getLocationInfo } from '../ducks/reducer';
+import { getLocationInfo, addLocation } from '../ducks/reducer';
 import { connect } from 'react-redux';
 class MainWrapper extends Component {
     constructor(props) {
@@ -40,6 +40,7 @@ class MainWrapper extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.client_id !== this.props.client_id) {
+            console.log(prevProps)
             this.props.getLocationInfo(this.props.client_id)
                 .then(() => this.setState({
                     locations: this.props.locationInfo.locations,
@@ -49,11 +50,13 @@ class MainWrapper extends Component {
 
                 }))
         }
+
     }
     addLocationFn = (location) => {
         let stateCopy = [...this.state.locations]
         stateCopy.push(location)
         console.log(stateCopy)
+        this.props.addLocation({ locations: stateCopy })
         this.setState({
             locations: stateCopy,
             addLocation: false
@@ -98,7 +101,6 @@ class MainWrapper extends Component {
     // ==== filter menu ====
     handleInput = (e) => {
         this.setState({ [e.target.name]: e.target.checked, filterButtonToggle: false })
-        this.forceUpdate()
     }
     handleSearchInput = (e) => {
         this.setState({ [e.target.name]: e.target.value, filterButtonToggle: false })
@@ -197,4 +199,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getLocationInfo })(MainWrapper);
+export default connect(mapStateToProps, { getLocationInfo, addLocation })(MainWrapper);

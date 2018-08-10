@@ -64,7 +64,7 @@ module.exports = {
             Linkedin,
             client_id:session.client_id,
             notifications:0,
-            avg_rating:0,
+            avg_rating:1,
             
         })
         newLocation.save(function (err, newLocation) {

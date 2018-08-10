@@ -7,6 +7,7 @@ const initialState = {
 const _FULFILLED = '_FULFILLED'
 const GET_USER = 'GET_USER'
 const GET_LOCATION = 'GET_LOCATION'
+const ADD_LOCATION = 'ADD_LOCATION'
 
 export function getUser() {
   const user = axios.get('/api/loggedIn').then(res=>res.data)
@@ -32,12 +33,20 @@ export function getLocationInfo(client_id){
     payload: locationInfo
   }
 }
+export function addLocation(location){
+  return {
+    type: ADD_LOCATION,
+    payload: location
+  }
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_USER + _FULFILLED:
       return Object.assign({}, state, { user: action.payload })
     case GET_LOCATION + _FULFILLED:
+      return Object.assign({}, state, { locationInfo: action.payload })
+    case ADD_LOCATION :
       return Object.assign({}, state, { locationInfo: action.payload })
 
     default:

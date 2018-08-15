@@ -25,5 +25,9 @@
     "eject": "react-scripts eject"
   },
   "main": "server/index.js",
-  "proxy": "http://localhost:4040"
+  "proxy": "http://localhost:4040",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-google": "^0.9.1"
+  }
 }

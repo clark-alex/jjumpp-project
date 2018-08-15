@@ -5,21 +5,18 @@ class SideBar extends Component {
     componentDidUpdate(prevProps) {
         if (JSON.stringify(prevProps.state) !== JSON.stringify(this.props.state)) {
             const shouldFilter = this.props.filterItems.length !== 0
-            let filteredByCountry = []
             const locationsCopy = this.props.locations
+            let filteredByCountry = []
             this.props.filterItems.forEach(filterItem => {
-                locationsCopy.forEach(location => {
-                    location.checkAll = 0
-                    if (location.address.country === Object.keys(filterItem)[0]) {
-                        filteredByCountry.push(location)
-                    }
+                filteredByCountry = locationsCopy.filter(location => {
+                    return location.address.country === Object.keys(filterItem)[0]
                 })
             })
             filteredByCountry = filteredByCountry.length === 0 ? locationsCopy : filteredByCountry
             let filteredByRating = []
             let ratingNumber = 0
             this.props.filterItems.forEach(filterItem => {
-                filteredByCountry.forEach(location => {
+                filteredByRating = filteredByCountry.filter(location => {
                     switch (Object.keys(filterItem)[0]) {
                         case 'fiveStars': ratingNumber = 5; break;
                         case 'fourStars': ratingNumber = 4; break;
@@ -27,31 +24,16 @@ class SideBar extends Component {
                         case 'twoStars': ratingNumber = 2; break;
                         case 'oneStar': ratingNumber = 1; break;
                     }
-                        if (ratingNumber === location.avg_rating) {
-                            filteredByRating.push(location)
-                        }
+                       return  ratingNumber === location.avg_rating
                 })
             })
             filteredByRating = ratingNumber === 0 ? filteredByCountry : filteredByRating
             let filteredByIntegration = []
-            let shouldFilterByRating = 0
             this.props.filterItems.forEach(filterItem => {
-                filteredByRating.forEach(location => {
-                    switch (Object.keys(filterItem)[0]) {
-                        case 'Facebook': shouldFilterByRating = 1; break;
-                        case 'GoogleAnalytics': shouldFilterByRating = 1; break;
-                        case 'GoogleMyBusiness': shouldFilterByRating = 1; break;
-                        case 'InfusionSoft': shouldFilterByRating = 1; break;
-                        case 'Twitter': shouldFilterByRating = 1; break;
-                        case 'YouTube': shouldFilterByRating = 1; break;
-                        case 'LinkedIn': shouldFilterByRating = 1; break;
-                    }
-                    if (location[Object.keys(filterItem)[0]]) {
-                        filteredByIntegration.push(location)
-                    }
+                filteredByIntegration= filteredByRating.filter(location => {
+                    return location[Object.keys(filterItem)[0]]===true
                 })
             })
-            filteredByIntegration = shouldFilterByRating === 0 ? filteredByRating : filteredByIntegration
             this.props.filterItems.length === 0 ?
                 this.props.addFilteredArray(this.props.locations)
                 :

@@ -35,6 +35,10 @@ i:hover{
 }
 
 /* button styles */
+button{
+  outline: none;
+  border: none;
+}
 .primaryButton{
   background: var(--primary);
   color:var(--white);
@@ -55,6 +59,7 @@ i:hover{
   color:var(--primary);
   font-size: 12px;
   outline: none;
+  border: solid 1px;
   border-color: var(--primary);
   width: 65px;
   height: 26px;

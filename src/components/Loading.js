@@ -22,7 +22,17 @@ class Loading extends Component {
   }
 
   render() {
-    return <div>{this.state.loading ? 'Loading' : this.props.children}</div>;
+    return (
+      <div>
+        {this.state.loading ? (
+          <div className="loadingContainer">
+            <div className="loading">Loading</div>
+          </div>
+        ) : (
+          this.props.children
+        )}
+      </div>
+    );
   }
 }
 

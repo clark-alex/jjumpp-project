@@ -165,6 +165,21 @@ select:hover{
   justify-content: center;
   align-items: center;
 }
+.loading{
+  background: var(--gray);
+  height: 100px;
+  width: 100px;
+  padding: 100px;
+}
+.loadingContainer{
+  background: var(--gray);
+  width:100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 

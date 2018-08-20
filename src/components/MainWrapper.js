@@ -4,6 +4,7 @@ import axios from 'axios';
 import SideBar from './SideBar/SideBar';
 import LocationsHeader from './LocationsByClient.js/LocationsHeader';
 import IndividualLocation from './LocationsByClient.js/IndividualLocation';
+import Loading from './Loading';
 import AddLocation from './AddLocation';
 import { getLocationInfo, addLocation } from '../ducks/reducer';
 
@@ -210,50 +211,52 @@ class MainWrapper extends Component {
         ))
       : null;
     return (
-      <div className="mainWrapper flexRow">
-        {this.state.addLocation ? (
-          <AddLocation handleToggle={this.handleToggle} addLocationFn={this.addLocationFn} />
-        ) : null}
-        {this.state.filterMenuToggle && this.props.locationInfo.locations ? (
-          <SideBar
-            state={{
-              USA,
-              UK,
-              Canada,
-              Facebook,
-              GoogleAnalytics,
-              GoogleMyBusiness,
-              InfusionSoft,
-              Twitter,
-              YouTube,
-              LinkedIn,
-              fiveStars,
-              fourStars,
-              threeStars,
-              twoStars,
-              oneStar,
-            }}
-            filterLocations={this.filterLocations}
-            handleInput={this.handleInput}
-            handleRatingsInput={this.handleRatingsInput}
-            filterButtonToggle={this.state.filterButtonToggle}
-            handleSearchInput={this.handleSearchInput}
-            search={this.state.search}
-            handleToggle={this.handleToggle}
-            locations={this.props.locationInfo.locations}
-            filterItems={this.itemsToFilter()}
-            addFilteredArray={this.addFilteredArray}
-          />
-        ) : null}
-        <div className="LocationsWrapper" style={!this.state.filterMenuToggle ? { width: '90vw' } : null}>
-          <LocationsHeader
-            locations={this.state.locations}
-            sortByLocationName={this.sortByLocationName}
-            handleToggle={this.handleToggle}
-          />
-          <div style={{ height: '70vh', overflow: 'scroll' }}>{locations}</div>
+      <Loading loadingParam={this.state.locations.length}>
+        <div className="mainWrapper flexRow">
+          {this.state.addLocation ? (
+            <AddLocation handleToggle={this.handleToggle} addLocationFn={this.addLocationFn} />
+          ) : null}
+          {this.state.filterMenuToggle && this.props.locationInfo.locations ? (
+            <SideBar
+              state={{
+                USA,
+                UK,
+                Canada,
+                Facebook,
+                GoogleAnalytics,
+                GoogleMyBusiness,
+                InfusionSoft,
+                Twitter,
+                YouTube,
+                LinkedIn,
+                fiveStars,
+                fourStars,
+                threeStars,
+                twoStars,
+                oneStar,
+              }}
+              filterLocations={this.filterLocations}
+              handleInput={this.handleInput}
+              handleRatingsInput={this.handleRatingsInput}
+              filterButtonToggle={this.state.filterButtonToggle}
+              handleSearchInput={this.handleSearchInput}
+              search={this.state.search}
+              handleToggle={this.handleToggle}
+              locations={this.props.locationInfo.locations}
+              filterItems={this.itemsToFilter()}
+              addFilteredArray={this.addFilteredArray}
+            />
+          ) : null}
+          <div className="LocationsWrapper" style={!this.state.filterMenuToggle ? { width: '90vw' } : null}>
+            <LocationsHeader
+              locations={this.state.locations}
+              sortByLocationName={this.sortByLocationName}
+              handleToggle={this.handleToggle}
+            />
+            <div style={{ height: '70vh', overflow: 'scroll' }}>{locations}</div>
+          </div>
         </div>
-      </div>
+      </Loading>
     );
   }
 }

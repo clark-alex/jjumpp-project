@@ -24,10 +24,10 @@ const LocationSchema = new Schema({
   last_managed: { type: Date, default: Date.now },
   Facebook: { type: Boolean },
   Google_Analytics: { type: Boolean },
-  Google_My_Business: { type: Boolean },
+  googleMyBusiness: { type: Boolean },
   Infusion_soft: { type: Boolean },
   Twitter: { type: Boolean },
-  You_Tube: { type: Boolean },
+  youTube: { type: Boolean },
   Linkedin: { type: Boolean },
 });
 

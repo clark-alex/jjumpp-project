@@ -11,9 +11,9 @@ export default function individualLocation(props) {
     extraUsers = userIdx.splice(6).length;
   }
   const userimg = userIdx.map((e, i) => (
-    <div key={i} style={{ borderRadius: '50%' }}>
+    <div key={e} style={{ borderRadius: '50%' }}>
       {props.users[e].img.length > 2 ? (
-        <img className="userImages flexColumn" src={props.users[e].img} />
+        <img className="userImages flexColumn" src={props.users[e].img} alt={props.users[e].name} />
       ) : (
         <div className="userImages flexColumn" style={{ fontSize: '10px' }}>
           {props.users[e].img}
@@ -27,7 +27,7 @@ export default function individualLocation(props) {
         <div style={{ margin: '20px 60px 30px' }} className="flexRow ">
           <section className="flexRow location locationDisplay">
             <div className="imgContainer">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/NSF_building-4.jpg" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/NSF_building-4.jpg" alt={props.name} />
             </div>
             <div className="nameAddress">
               <h3>{props.name}</h3>
@@ -43,7 +43,9 @@ export default function individualLocation(props) {
           <section className="userDisplay flexColumn">
             <div className="flexRow nameAddress">
               <h2>{numOfUsers} Users</h2>
-              <button className="circularButton">+</button>
+              <button type="button" className="circularButton">
+                +
+              </button>
             </div>
             <div className="flexRow">
               {userimg}
@@ -66,7 +68,9 @@ export default function individualLocation(props) {
             {props.notifications >= 10 ? <p style={{ width: '20px' }}>{props.notifications}</p> : null}
           </section>
           <div className=" nameAddress managePlaceholder ">
-            <button className="secondaryButton">Manage</button>
+            <button type="button" className="secondaryButton">
+              Manage
+            </button>
           </div>
         </div>
       </div>

@@ -73,43 +73,27 @@ class MainWrapper extends Component {
     // title will represent the title of what is to be sorted
     // this sort will sort by name. it will have to take into
     // account first characters then numbers.
-    const locationsCopy = this.state.locations.slice();
-    {
-      if (title === 'notifications') locationsCopy.sort((a, b) => a.notifications - b.notifications);
-      else if (title === 'last_managed')
-        locationsCopy.sort((a, b) => +Date.parse(a.last_managed) - +Date.parse(b.last_managed));
-      else
-        locationsCopy.sort((a, b) => {
-          const nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
-          const nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-          // names must be equal
-          return 0;
-        });
-    }
-    // title === 'notifications'
-    //   ? locationsCopy.sort((a, b) => a.notifications - b.notifications)
-    //   : title === 'last_managed'
-    //     ? locationsCopy.sort((a, b) => +Date.parse(a.last_managed) - +Date.parse(b.last_managed))
-    //     : // sort by name
-    //       locationsCopy.sort((a, b) => {
-    //         const nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
-    //         const nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
-    //         if (nameA < nameB) {
-    //           return -1;
-    //         }
-    //         if (nameA > nameB) {
-    //           return 1;
-    //         }
-    //         // names must be equal
-    //         return 0;
-    //       });
-    this.state.sorted
+    const { locations, sorted } = this.state;
+    const locationsCopy = locations.slice();
+
+    if (title === 'notifications') locationsCopy.sort((a, b) => a.notifications - b.notifications);
+    else if (title === 'last_managed')
+      locationsCopy.sort((a, b) => +Date.parse(a.last_managed) - +Date.parse(b.last_managed));
+    else
+      locationsCopy.sort((a, b) => {
+        const nameA = a.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
+        const nameB = b.name.toUpperCase().replace(/\s/g, ''); // ignore upper and lowercase and whitespace
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+      });
+
+    return sorted
       ? this.setState({ locations: locationsCopy.reverse(), sorted: false })
       : this.setState({ locations: locationsCopy, sorted: true });
   };
@@ -131,7 +115,7 @@ class MainWrapper extends Component {
     this.setState({ [toggleItem]: !this.state[toggleItem] });
   };
 
-  filterLocations = () => {
+  filterLocations = () =>
     this.state.filterButtonToggle
       ? this.setState({
           avgRatings: [],
@@ -149,6 +133,9 @@ class MainWrapper extends Component {
           locations: this.props.locationInfo.locations,
         })
       : this.filterFunction();
+
+  addFilteredArray = filteredArray => {
+    this.setState({ locations: filteredArray });
   };
 
   itemsToFilter() {
@@ -189,10 +176,6 @@ class MainWrapper extends Component {
     return filterItems;
   }
 
-  addFilteredArray = filteredArray => {
-    this.setState({ locations: filteredArray });
-  };
-
   render() {
     const {
       USA,
@@ -213,7 +196,7 @@ class MainWrapper extends Component {
     } = this.state;
     const locations = this.state.locations
       ? this.state.locations.map((e, i) => (
-          <div key={i}>
+          <div key={e.name}>
             <IndividualLocation
               name={e.name}
               address={e.address}

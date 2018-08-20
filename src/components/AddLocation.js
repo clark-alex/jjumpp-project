@@ -50,10 +50,10 @@ class AddLocation extends Component {
       },
       Facebook: facebook,
       Google_Analytics: googleAnalytics,
-      Google_My_Business: googleMyBusiness,
-      Infusion_Soft: infusionSoft,
+      googleMyBusiness,
+      infusionSoft,
       Twitter: twitter,
-      You_Tube: youTube,
+      youTube,
       Linkedin: linkedIn,
     };
     axios.post('/api/addLocation', body).then(res => addLocationFn(res.data));
@@ -70,9 +70,9 @@ class AddLocation extends Component {
         <div className="addLocationModel ">
           <div className="innerAdd">
             <div className="flexRow closeModel">
-              <i onClick={() => handleToggle('addLocation')} className="material-icons">
-                close
-              </i>
+              <button type="button" onClick={() => handleToggle('addLocation')}>
+                <i className="material-icons">close</i>
+              </button>
             </div>
             <h1>Add a Location</h1>
 
@@ -126,7 +126,7 @@ class AddLocation extends Component {
                 <h4>Linkedin</h4>
               </div>
               <div>
-                <button className="primaryButton" onClick={this.handleSubmit}>
+                <button type="button" className="primaryButton" onClick={this.handleSubmit}>
                   Add location
                 </button>
               </div>

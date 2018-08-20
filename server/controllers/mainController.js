@@ -7,85 +7,85 @@ const user = require('../models/User.js');
 // simulating a logged in user
 const session = { user: '5b5f6a9c2955432cc62320c2', clientId: '5b5fb6d7aa10fd0dfc56dec0' };
 module.exports = {
-  getUsersByLocation: function(req, res) {
+  getUsersByLocation(req, res) {
     const { id } = req.params;
     user
-      .find({ clientId: id }, function(err, users) {
+      .find({ clientId: id }, (err, users) => {
         if (err) return console.error(err);
       })
       .then(users => res.status(200).send(users));
   },
-  getLoggedin: function(req, res) {
+  getLoggedin(req, res) {
     // just a simulation
     user
-      .findById(session.user, function(err, user) {
+      .findById(session.user, err => {
         if (err) return console.error(err);
       })
-      .then(user => res.status(200).send(user));
+      .then(activeUser => res.status(200).send(activeUser));
   },
-  getLocationByClient: function(req, res) {
+  getLocationByClient(req, res) {
     const { id } = req.params;
     location
-      .find({ clientId: id }, function(err, location) {
+      .find({ clientId: id }, err => {
         if (err) return console.error(err);
       })
       .then(locations => res.status(200).send(locations));
   },
   // I chose to get notifications,ratings and users by client, so that I dont have to do an HTTP
   // request on each location component.
-  getNotificationByClient: function(req, res) {
+  getNotificationByClient(req, res) {
     const { id } = req.params;
     notification
-      .find({ clientId: id }, function(err, notification) {
+      .find({ clientId: id }, err => {
         if (err) return console.error(err);
       })
-      .then(notification => res.status(200).send(notification));
+      .then(notifications => res.status(200).send(notifications));
   },
-  getRatingsByClient: function(req, res) {
+  getRatingsByClient(req, res) {
     rating
-      .find({ clientId: session.clientId }, function(err, rating) {
+      .find({ clientId: session.clientId }, err => {
         if (err) return console.error(err);
       })
-      .then(rating => res.status(200).send(rating));
+      .then(individualRating => res.status(200).send(individualRating));
   },
-  addLocation: function(req, res) {
+  addLocation(req, res) {
     const {
       name,
       address,
       Facebook,
-      Google_anaylytics,
-      Google_My_Business,
-      Infusion_Soft,
+      googleAnalytics,
+      googleMyBusiness,
+      infusionSoft,
       Twitter,
-      You_Tube,
+      youTube,
       Linkedin,
     } = req.body;
     const newLocationinfo = {
       name,
       address: { street: address.street, city: address.city, country: address.country },
       Facebook,
-      Google_anaylytics,
-      Google_My_Business,
-      Infusion_Soft,
+      googleAnalytics,
+      googleMyBusiness,
+      infusionSoft,
       Twitter,
-      You_Tube,
+      youTube,
       Linkedin,
     };
     const newLocation = new location({
       name,
       address: { street: address.street, city: address.city, country: address.country },
       Facebook,
-      Google_anaylytics,
-      Google_My_Business,
-      Infusion_Soft,
+      googleAnalytics,
+      googleMyBusiness,
+      infusionSoft,
       Twitter,
-      You_Tube,
+      youTube,
       Linkedin,
       clientId: session.clientId,
       notifications: 0,
       avg_rating: 1,
     });
-    newLocation.save(function(err, newLocation) {
+    newLocation.save((err, newLocation) => {
       if (err) return console.error(err);
       res.status(200).send(newLocation);
     });
